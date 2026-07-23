@@ -80,8 +80,8 @@ attributes stay in the markup so the videos still work with JavaScript off.
 
 - **Design tokens** are CSS custom properties at the top of `site.css` — colors,
   type stacks, spacing, shadows. Change them there, not in the rules.
-- **Pricing numbers are authoritative.** `$99` one-time (marked *"Launch price — going
-  up to $149"*), `$19 × 6` rent-to-own (`$114` total), `$49/yr` optional renewal,
+- **Pricing numbers are authoritative.** `$129` founder → `$239` (marked *"Founder price — first 30 days. Goes
+  up to $239"*), `$45 × 6` rent-to-own (`$270` total), `$19/yr` optional renewal,
   24 months of updates included, 14-day trial. Do not alter them casually.
 - **Copy rules:** never describe HelmCNC as a recurring-billing product — the s-word for
   that is banned from the page. Use "one-time", "own it", "rent-to-own", "renewal". Keep

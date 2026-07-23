@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>HelmCNC — A modern control screen for Dynomotion KFLOP &amp; Kogna</title>
-<meta name="description" content="Touch-first control software for your Dynomotion KFLOP or Kogna machine — phone pendant included. $99 one-time, yours forever. Free 14-day full-featured trial.">
+<meta name="description" content="Touch-first control software for your Dynomotion KFLOP or Kogna machine — with a native phone pendant for iPhone and Android included. $99 one-time, yours forever. Free 14-day full-featured trial.">
 <meta name="theme-color" content="#060709">
 <link rel="canonical" href="https://helmcnc.com/">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
@@ -12,7 +12,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="HelmCNC">
 <meta property="og:title" content="HelmCNC — A modern control screen for Dynomotion KFLOP &amp; Kogna">
-<meta property="og:description" content="Touch-first control software for your KFLOP or Kogna machine — with a phone pendant included. One-time purchase. Never stops working.">
+<meta property="og:description" content="Touch-first control software for your KFLOP or Kogna machine — with a native phone pendant included. One-time purchase. Never stops working.">
 <meta property="og:image" content="https://helmcnc.com/assets/img/hero-poster.jpg">
 <meta property="og:url" content="https://helmcnc.com/">
 <meta name="twitter:card" content="summary_large_image">
@@ -51,7 +51,7 @@
   <div class="hero__inner">
     <span class="eyebrow hero__eyebrow">Control software · Dynomotion KFLOP / Kogna</span>
     <h1 class="hero__h1">A modern control screen for Dynomotion KFLOP &amp; Kogna.</h1>
-    <p class="hero__sub">Touch-first control software for your KFLOP or Kogna machine — with a phone pendant included.</p>
+    <p class="hero__sub">Touch-first control software for your KFLOP or Kogna machine — with a native phone pendant included.</p>
 
     <div class="hero__ctas">
       <a class="btn btn--amber" href="#pricing">
@@ -78,8 +78,8 @@
           <span class="frame__tick frame__tick--tr"></span>
           <span class="frame__tick frame__tick--bl"></span>
           <span class="frame__tick frame__tick--br"></span>
-          <div class="frame__screen">
-            <video class="js-autoplay" autoplay muted loop playsinline preload="metadata"
+          <div class="frame__screen" data-video-wrap style="background-image:url('assets/img/hero-poster.jpg')">
+            <video class="js-video" autoplay muted loop playsinline webkit-playsinline preload="metadata"
                    poster="assets/img/hero-poster.jpg" aria-label="The HelmCNC Control screen running a job">
               <source src="assets/video/helm9.mp4" type="video/mp4">
               <img src="assets/img/hero-poster.jpg" alt="The HelmCNC Control screen running a job">
@@ -95,7 +95,7 @@
 
       <div class="hero__pendant-col">
         <div class="pendant-mount" data-pendant-clone style="width:100%; max-width:250px;"></div>
-        <p class="caption">Your phone is the pendant — included. Connects over your WiFi in seconds.</p>
+        <p class="caption caption--pendant">Your phone is the pendant — a free app for iPhone &amp; Android, included. Pairs to your machine over WiFi in seconds.</p>
       </div>
     </div>
   </div>
@@ -129,8 +129,8 @@
 
     <!-- toolpath render strip -->
     <div class="strip">
-      <div class="media">
-        <video class="js-autoplay" autoplay muted loop playsinline preload="metadata"
+      <div class="media" data-video-wrap style="background-image:url('assets/img/quickparts.jpg')">
+        <video class="js-video" autoplay muted loop playsinline webkit-playsinline preload="metadata"
                poster="assets/img/quickparts.jpg" aria-label="The toolpath rendering and following the tool as it cuts">
           <source src="assets/video/hrlmcnc4.mp4" type="video/mp4">
           <img src="assets/img/quickparts.jpg" alt="The toolpath rendering and following the tool as it cuts">
@@ -176,8 +176,8 @@
         </div>
       </div>
       <div class="split__media-stack">
-        <div class="media">
-          <video class="js-autoplay" autoplay muted loop playsinline preload="metadata"
+        <div class="media" data-video-wrap style="background-image:url('assets/img/quickparts.jpg')">
+          <video class="js-video" autoplay muted loop playsinline webkit-playsinline preload="metadata"
                  poster="assets/img/quickparts.jpg" aria-label="Drawing a part and generating its toolpath inside HelmCNC">
             <source src="assets/video/helm5.mp4" type="video/mp4">
             <img src="assets/img/quickparts.jpg" alt="Drawing a part and generating its toolpath inside HelmCNC">
@@ -232,79 +232,167 @@
 <section class="section section--anchor pendant-sec" id="pendant">
   <div class="wrap pendant-sec__inner">
     <div class="pendant-sec__device">
-      <!-- Source of truth for the live pendant; JS clones it into the hero. -->
+      <!-- Source of truth for the pendant demo; site.js clones it into the hero
+           and wires each copy up with its own independent state. -->
       <div class="pendant-mount" data-pendant-source style="width:100%; max-width:300px;">
 
-        <div class="pendant" role="img" aria-label="The HelmCNC phone pendant on the joystick tab: X, Y and Z readouts, a jog joystick and an E-STOP.">
+        <div class="pendant" role="group" aria-label="HelmCNC phone pendant — try it">
           <div class="pendant__bezel">
             <div class="pendant__screen">
 
+              <!-- persistent: status bar -->
               <div class="pdt-status">
                 <span class="pdt-status__live"></span>
                 <span class="pdt-status__net">KFLOP · 4ms</span>
-                <span class="pdt-status__state">
+                <span class="pdt-status__state" data-state-chip>
                   <span class="pdt-status__state-icon">◇</span>
-                  <span class="pdt-status__state-text">IDLE</span>
+                  <span class="pdt-status__state-text" data-state-text>IDLE</span>
                 </span>
                 <span class="pdt-status__wcs">G54</span>
                 <span class="pdt-status__units">mm</span>
               </div>
 
-              <div class="pdt-dro">
-                <div class="pdt-dro__row">
-                  <span class="pdt-dro__axis">X</span>
-                  <span class="pdt-dro__val">0.000</span>
-                  <span class="pdt-dro__mach">MACH 0.000</span>
+              <!-- fixed-height pane region: the phone never changes shape between tabs -->
+              <div class="pdt-panes">
+
+                <!-- ══ JOG ══ -->
+                <div class="pdt-pane is-on" data-pane="JOG">
+                  <div class="pdt-dro">
+                    <div class="pdt-dro__row">
+                      <span class="pdt-dro__axis">X</span>
+                      <span class="pdt-dro__val" data-dro="X">0.000</span>
+                      <span class="pdt-dro__mach">MACH 0.000</span>
+                    </div>
+                    <div class="pdt-dro__row">
+                      <span class="pdt-dro__axis">Y</span>
+                      <span class="pdt-dro__val" data-dro="Y">0.000</span>
+                      <span class="pdt-dro__mach">MACH 0.000</span>
+                    </div>
+                    <div class="pdt-dro__row">
+                      <span class="pdt-dro__axis">Z</span>
+                      <span class="pdt-dro__val" data-dro="Z">74.000</span>
+                      <span class="pdt-dro__mach">MACH 86.500</span>
+                    </div>
+                  </div>
+
+                  <div class="pdt-modes">
+                    <button class="pdt-modes__btn" type="button" data-mode="STEP">STEP</button>
+                    <button class="pdt-modes__btn is-on" type="button" data-mode="CONT">JOYSTICK</button>
+                  </div>
+
+                  <div class="pdt-speed">
+                    <span class="pdt-speed__label">SPEED</span>
+                    <div class="pdt-slider pdt-slider--amber" data-slider="speed" data-min="0" data-max="100"
+                         role="slider" tabindex="0" aria-label="Jog speed"
+                         aria-valuemin="0" aria-valuemax="100" aria-valuenow="8" aria-valuetext="8 percent">
+                      <div class="pdt-slider__fill" style="width:8%"></div>
+                      <div class="pdt-slider__handle" style="left:8%"></div>
+                    </div>
+                    <span class="pdt-speed__pct" data-out="speed">8%</span>
+                  </div>
+
+                  <div class="pdt-jog">
+                    <div class="pdt-well">
+                      <div class="pdt-well__ring"></div>
+                      <span class="pdt-well__lbl pdt-well__lbl--yp">Y+</span>
+                      <span class="pdt-well__lbl pdt-well__lbl--yn">Y−</span>
+                      <span class="pdt-well__lbl pdt-well__lbl--xn">X−</span>
+                      <span class="pdt-well__lbl pdt-well__lbl--xp">X+</span>
+                      <div class="pdt-well__knob" data-joy role="presentation" title="Drag to jog X and Y"></div>
+                    </div>
+                    <div class="pdt-zstick">
+                      <span class="pdt-zstick__lbl pdt-zstick__lbl--p">Z+</span>
+                      <span class="pdt-zstick__lbl pdt-zstick__lbl--n">Z−</span>
+                      <div class="pdt-zstick__grip" data-zstick role="presentation" title="Drag to jog Z"></div>
+                    </div>
+                  </div>
                 </div>
-                <div class="pdt-dro__row">
-                  <span class="pdt-dro__axis">Y</span>
-                  <span class="pdt-dro__val">0.000</span>
-                  <span class="pdt-dro__mach">MACH 0.000</span>
+
+                <!-- ══ RUN ══ -->
+                <div class="pdt-pane" data-pane="RUN">
+                  <div class="pdt-run__head">
+                    <span class="pdt-run__file">bracket_v3.ngc</span>
+                    <span class="pdt-run__pct">62%</span>
+                  </div>
+                  <div class="pdt-run__bar">
+                    <div class="pdt-run__fill is-running" data-run-fill></div>
+                  </div>
+                  <div class="pdt-run__meta">
+                    <span data-run-state>running</span>
+                    <span>line 1327 / 2140</span>
+                  </div>
+
+                  <div class="pdt-ovrs">
+                    <div class="pdt-ovr">
+                      <div class="pdt-ovr__head">
+                        <span class="pdt-ovr__label">FEED OVERRIDE</span>
+                        <span class="pdt-ovr__val pdt-ovr__val--amber" data-out="feed">100%</span>
+                      </div>
+                      <div class="pdt-slider pdt-slider--amber pdt-slider--tall" data-slider="feed" data-min="10" data-max="200"
+                           role="slider" tabindex="0" aria-label="Feed override"
+                           aria-valuemin="10" aria-valuemax="200" aria-valuenow="100" aria-valuetext="100 percent">
+                        <div class="pdt-slider__fill" style="width:47.4%"></div>
+                        <div class="pdt-slider__tick" style="left:47.4%"></div>
+                        <div class="pdt-slider__handle" style="left:47.4%"></div>
+                      </div>
+                    </div>
+                    <div class="pdt-ovr">
+                      <div class="pdt-ovr__head">
+                        <span class="pdt-ovr__label">SPINDLE OVERRIDE</span>
+                        <span class="pdt-ovr__val pdt-ovr__val--cyan" data-out="spindle">100%</span>
+                      </div>
+                      <div class="pdt-slider pdt-slider--cyan pdt-slider--tall" data-slider="spindle" data-min="10" data-max="150"
+                           role="slider" tabindex="0" aria-label="Spindle override"
+                           aria-valuemin="10" aria-valuemax="150" aria-valuenow="100" aria-valuetext="100 percent">
+                        <div class="pdt-slider__fill" style="width:64.3%"></div>
+                        <div class="pdt-slider__tick" style="left:64.3%"></div>
+                        <div class="pdt-slider__handle" style="left:64.3%"></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <button class="pdt-run__btn is-running" type="button" data-run-toggle>
+                    <span class="pdt-run__btn-icon" data-run-icon>❚❚</span>
+                    <span class="pdt-run__btn-text" data-run-label>PAUSE</span>
+                  </button>
                 </div>
-                <div class="pdt-dro__row">
-                  <span class="pdt-dro__axis">Z</span>
-                  <span class="pdt-dro__val">74.000</span>
-                  <span class="pdt-dro__mach">MACH 86.500</span>
+
+                <!-- ══ CAM ══ -->
+                <div class="pdt-pane" data-pane="CAM">
+                  <span class="pdt-list__head">Quick Parts</span>
+                  <div class="pdt-list">
+                    <button class="pdt-row" type="button"><span class="pdt-row__glyph">▤</span><span class="pdt-row__name">Surface a slab</span><span class="pdt-row__chev">›</span></button>
+                    <button class="pdt-row" type="button"><span class="pdt-row__glyph">▦</span><span class="pdt-row__name">Flatten spoilboard</span><span class="pdt-row__chev">›</span></button>
+                    <button class="pdt-row" type="button"><span class="pdt-row__glyph">⬡</span><span class="pdt-row__name">Import DXF</span><span class="pdt-row__chev">›</span></button>
+                    <button class="pdt-row" type="button"><span class="pdt-row__glyph">▭</span><span class="pdt-row__name">Quick rectangle</span><span class="pdt-row__chev">›</span></button>
+                  </div>
                 </div>
+
+                <!-- ══ MORE ══ -->
+                <div class="pdt-pane" data-pane="MORE">
+                  <span class="pdt-list__head">Menu</span>
+                  <div class="pdt-list pdt-list--cyan">
+                    <button class="pdt-row" type="button"><span class="pdt-row__glyph">▤</span><span class="pdt-row__name">Files</span><span class="pdt-row__chev">›</span></button>
+                    <button class="pdt-row" type="button"><span class="pdt-row__glyph">◉</span><span class="pdt-row__name">Tools</span><span class="pdt-row__chev">›</span></button>
+                    <button class="pdt-row" type="button"><span class="pdt-row__glyph">▧</span><span class="pdt-row__name">Macros</span><span class="pdt-row__chev">›</span></button>
+                    <button class="pdt-row" type="button"><span class="pdt-row__glyph">◈</span><span class="pdt-row__name">Diagnostics</span><span class="pdt-row__chev">›</span></button>
+                    <button class="pdt-row" type="button"><span class="pdt-row__glyph">⚙</span><span class="pdt-row__name">Settings</span><span class="pdt-row__chev">›</span></button>
+                  </div>
+                </div>
+
               </div>
 
-              <div class="pdt-modes">
-                <div class="pdt-modes__btn">JOG</div>
-                <div class="pdt-modes__btn is-on">JOYSTICK</div>
-              </div>
+              <!-- persistent: E-STOP -->
+              <button class="pdt-estop" type="button" data-estop>
+                <span class="pdt-estop__text" data-estop-text>E-STOP</span>
+              </button>
 
-              <div class="pdt-speed">
-                <span class="pdt-speed__label">CONT SPEED</span>
-                <div class="pdt-speed__track">
-                  <div class="pdt-speed__fill"></div>
-                  <div class="pdt-speed__knob"></div>
-                </div>
-                <span class="pdt-speed__pct">8%</span>
-              </div>
-
-              <div class="pdt-jog">
-                <div class="pdt-well">
-                  <div class="pdt-well__ring"></div>
-                  <span class="pdt-well__lbl pdt-well__lbl--yp">Y+</span>
-                  <span class="pdt-well__lbl pdt-well__lbl--yn">Y−</span>
-                  <span class="pdt-well__lbl pdt-well__lbl--xn">X−</span>
-                  <span class="pdt-well__lbl pdt-well__lbl--xp">X+</span>
-                  <div class="pdt-well__knob"></div>
-                </div>
-                <div class="pdt-zstick">
-                  <span class="pdt-zstick__lbl pdt-zstick__lbl--p">Z+</span>
-                  <span class="pdt-zstick__lbl pdt-zstick__lbl--n">Z−</span>
-                  <div class="pdt-zstick__grip"></div>
-                </div>
-              </div>
-
-              <div class="pdt-estop"><span>E-STOP</span></div>
-
+              <!-- persistent: tab bar -->
               <div class="pdt-tabs">
-                <div class="pdt-tabs__tab is-on"><span class="pdt-tabs__icon">✛</span><span class="pdt-tabs__name">JOG</span></div>
-                <div class="pdt-tabs__tab"><span class="pdt-tabs__icon">▶</span><span class="pdt-tabs__name">RUN</span></div>
-                <div class="pdt-tabs__tab"><span class="pdt-tabs__icon">◎</span><span class="pdt-tabs__name">CAM</span></div>
-                <div class="pdt-tabs__tab"><span class="pdt-tabs__icon">⋯</span><span class="pdt-tabs__name">MORE</span></div>
+                <button class="pdt-tabs__tab is-on" type="button" data-tab="JOG"><span class="pdt-tabs__icon">✛</span><span class="pdt-tabs__name">JOG</span></button>
+                <button class="pdt-tabs__tab" type="button" data-tab="RUN"><span class="pdt-tabs__icon">▶</span><span class="pdt-tabs__name">RUN</span></button>
+                <button class="pdt-tabs__tab" type="button" data-tab="CAM"><span class="pdt-tabs__icon">◎</span><span class="pdt-tabs__name">CAM</span></button>
+                <button class="pdt-tabs__tab" type="button" data-tab="MORE"><span class="pdt-tabs__icon">⋯</span><span class="pdt-tabs__name">MORE</span></button>
               </div>
 
             </div>
@@ -316,22 +404,23 @@
 
     <div class="pendant-sec__copy">
       <span class="eyebrow eyebrow--cyan">Included — not an add-on</span>
-      <h2 class="h2" style="line-height:1.0;">Your phone is the pendant.</h2>
-      <p class="pendant-sec__lead">Pair over your local WiFi in seconds — nothing cloud, nothing to sign into. Then run the machine from anywhere in the shop.</p>
+      <h2 class="h2 h2--tight">Your phone is the pendant.</h2>
+      <p class="pendant-sec__lead">A native app for iPhone and Android — download it free from the App Store or Google Play. Pair to your machine over your local WiFi in seconds; nothing cloud, nothing to sign into.</p>
       <div class="bullets pendant-sec__bullets">
         <div class="bullet bullet--cyan"><span class="bullet__dot"></span><p>Run and pause jobs, jog, and nudge feed &amp; spindle — plus programmable buttons for vacuum, dust extraction, coolant/mist and your own outputs, right from your phone.</p></div>
         <div class="bullet bullet--cyan"><span class="bullet__dot"></span><p>Jog with your thumb — the joystick and jog buttons are right there.</p></div>
         <div class="bullet bullet--cyan"><span class="bullet__dot"></span><p>Watch progress from anywhere in the shop.</p></div>
+        <div class="bullet bullet--cyan"><span class="bullet__dot"></span><p>Watch the cut live through your phone's camera.</p></div>
         <div class="bullet bullet--red-sm"><span class="bullet__dot"></span><p>E-STOP always on screen.</p></div>
       </div>
-      <p class="pendant-sec__foot">Runs on the phone you already carry · no extra hardware to buy</p>
+      <p class="pendant-sec__foot">Free on the App Store &amp; Google Play · runs on the phone you already carry</p>
     </div>
   </div>
 </section>
 
 <!-- ═══════════════════ 4 · COMING SOON ═══════════════════ -->
 <section class="section section--alt">
-  <div class="wrap" style="padding-top:clamp(52px,7vw,88px); padding-bottom:clamp(52px,7vw,88px);">
+  <div class="wrap soon__inner">
     <div class="soon__head">
       <span class="eyebrow eyebrow--quiet">On the roadmap</span>
       <h2 class="soon__h2">Coming later, as paid add-ons</h2>
@@ -391,7 +480,8 @@
           <span class="price__num">$99</span>
           <span class="price__unit">/ perpetual license</span>
         </div>
-        <p class="price__note">Everything in V1, including the phone pendant. <strong>24 months of updates included.</strong></p>
+        <span class="price__launch">Launch price — going up to $149</span>
+        <p class="price__note">Everything in V1, including the native phone pendant. <strong>24 months of updates included.</strong></p>
         <div class="price__list">
           <div class="price__item"><span class="price__check">✓</span><span>The full Control cockpit + Quick Parts</span></div>
           <div class="price__item"><span class="price__check">✓</span><span>Phone pendant included</span></div>
@@ -427,7 +517,7 @@
 <section class="section section--alt band">
   <div class="wrap band__inner">
     <span class="eyebrow">First release · updates included</span>
-    <p>This is HelmCNC's first release. Updates ship often — they download quietly in the background and turn on the next time you open the app. And we build to customer feedback: tell us what you need and it goes on the list.</p>
+    <p>This is HelmCNC's first release. Desktop updates ship often — they download quietly in the background and turn on the next time you open the app. The phone pendant updates through the App Store and Google Play. And we build to customer feedback: tell us what you need and it goes on the list.</p>
   </div>
 </section>
 

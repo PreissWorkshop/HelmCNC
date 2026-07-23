@@ -33,10 +33,13 @@
   --on-amber-2:    #141414;
   --on-amber-mute: #6b4900;
   --cyan:          #3fd2ff;
+  --cyan-knob:     linear-gradient(180deg, #3fd2ff, #159fce);
+  --cyan-edge:     #7fe3ff;
   --green:         #2CFF05;
   --green-soft:    #8aff6e;
   --red:           #e5484d;
   --red-soft:      #ff8589;
+  --on-red:        #140406;
 
   /* text */
   --head:          #f4f6fa;
@@ -49,6 +52,13 @@
   --text-faint-2:  #5b6270;
   --text-off:      #7d8592;
   --text-disabled: #3d4450;
+
+  /* pendant internals */
+  --pdt-seam:      #16181d;
+  --pdt-well:      #0b0c0f;
+  --pdt-track:     #1e2128;
+  --pdt-row:       #0e0f12;
+  --pdt-row-line:  #1d2026;
 
   /* type */
   --f-head: 'Oswald', 'Arial Narrow', sans-serif;
@@ -150,6 +160,7 @@ img, svg, video { display: block; max-width: 100%; }
   line-height: 1.05;
   letter-spacing: -.4px;
 }
+.h2--tight { line-height: 1.0; }
 
 .lede {
   margin: 18px 0 0;
@@ -168,6 +179,7 @@ img, svg, video { display: block; max-width: 100%; }
   line-height: 1.55;
   color: var(--text-faint-2);
 }
+.caption--pendant { max-width: 250px; }
 
 .chips {
   display: flex;
@@ -217,11 +229,23 @@ img, svg, video { display: block; max-width: 100%; }
 .media {
   position: relative;
   border: 1px solid var(--line-3);
-  background: #000;
+  /* longhand on purpose: the shorthand would wipe the poster background-image
+     that [data-video-wrap] sets below */
+  background-color: #000;
   overflow: hidden;
   box-shadow: var(--shadow-card);
 }
-.media img, .media video { width: 100%; height: auto; background: #000; }
+.media img, .media video { width: 100%; height: auto; }
+
+/* The poster still sits behind every clip, so a video is never a black box —
+   see the decode-safety pattern in site.js. The image itself is set inline on
+   the wrapper, so its relative URL resolves against the page, not this file. */
+[data-video-wrap] {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+[data-video-wrap] video { background: transparent; }
 
 .tag {
   position: absolute;
@@ -428,7 +452,6 @@ img, svg, video { display: block; max-width: 100%; }
   align-items: center;
   gap: 14px;
 }
-.hero__pendant-col .caption { max-width: 230px; }
 
 /* shop-panel frame with amber corner ticks */
 
@@ -452,10 +475,10 @@ img, svg, video { display: block; max-width: 100%; }
 .frame__screen {
   position: relative;
   overflow: hidden;
-  background: #000;
+  background-color: #000;          /* longhand — see .media */
   border: 1px solid var(--line-2);
 }
-.frame__screen video, .frame__screen img { width: 100%; height: auto; background: #000; }
+.frame__screen video, .frame__screen img { width: 100%; height: auto; }
 .frame .tag { top: 14px; right: 14px; padding: 6px 11px; }
 
 /* ---------- features ---------- */
@@ -555,7 +578,7 @@ img, svg, video { display: block; max-width: 100%; }
   font-size: clamp(16px, 1.6vw, 19px);
   line-height: 1.55;
   color: var(--text);
-  max-width: 50ch;
+  max-width: 52ch;
 }
 .pendant-sec__bullets { gap: 14px; margin-top: 26px; }
 .pendant-sec__foot {
@@ -568,6 +591,10 @@ img, svg, video { display: block; max-width: 100%; }
 
 /* ---------- coming soon ---------- */
 
+.soon__inner {
+  padding-top: clamp(52px, 7vw, 88px);
+  padding-bottom: clamp(52px, 7vw, 88px);
+}
 .soon__head { text-align: center; margin-bottom: clamp(28px, 3.5vw, 44px); }
 .soon__h2 {
   margin: 12px 0 0;
@@ -693,6 +720,14 @@ img, svg, video { display: block; max-width: 100%; }
 }
 .price--alt .price__num { color: var(--head-3); }
 .price__unit { font-size: 15px; color: var(--text-mute); }
+.price__launch {
+  display: inline-block;
+  margin-top: 10px;
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: var(--green-soft);
+}
 .price__note {
   margin: 16px 0 0;
   font-size: 15.5px;
@@ -900,8 +935,9 @@ img, svg, video { display: block; max-width: 100%; }
 }
 
 /* ============================================================
-   Live pendant — self-contained, container-query scaled.
-   Motion is decorative (CSS keyframes only).
+   Interactive pendant — a phone visitors can actually operate.
+   Everything inside scales off the mount width via container
+   query units (cqw), so one component serves both mount sizes.
    ============================================================ */
 
 .pendant { width: 100%; font-family: var(--f-body); }
@@ -925,12 +961,28 @@ img, svg, video { display: block; max-width: 100%; }
   flex-direction: column;
 }
 
+/* Every control in the phone is a real button — strip the UA chrome once.
+   :where() keeps this at zero specificity so the single-class component
+   rules below still set their own backgrounds. */
+:where(.pendant button) {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  margin: 0;
+  text-align: inherit;
+  cursor: pointer;
+}
+.pendant :focus-visible { outline: 2px solid var(--amber-hi); outline-offset: -2px; }
+
+/* ---- persistent: status bar ---- */
+
 .pdt-status {
   display: flex;
   align-items: center;
   gap: 2cqw;
   padding: 3.6cqw 4cqw;
-  border-bottom: 1px solid #16181d;
+  border-bottom: 1px solid var(--pdt-seam);
 }
 .pdt-status__live {
   width: 2.6cqw;
@@ -952,14 +1004,12 @@ img, svg, video { display: block; max-width: 100%; }
   margin-left: 2cqw;
   padding: 1.2cqw 2.4cqw;
   background: #121418;
-}
-.pdt-status__state-icon { font-size: 2.8cqw; color: var(--text-mute); }
-.pdt-status__state-text {
-  font-size: 2.7cqw;
-  font-weight: 700;
-  letter-spacing: 1px;
   color: var(--text-mute);
 }
+.pdt-status__state[data-state="RUN"]  { color: var(--green); }
+.pdt-status__state[data-state="STOP"] { color: var(--red-soft); }
+.pdt-status__state-icon { font-size: 2.8cqw; }
+.pdt-status__state-text { font-size: 2.7cqw; font-weight: 700; letter-spacing: 1px; }
 .pdt-status__wcs {
   margin-left: auto;
   font-family: var(--f-head);
@@ -969,13 +1019,32 @@ img, svg, video { display: block; max-width: 100%; }
 }
 .pdt-status__units { font-size: 2.9cqw; color: var(--text-faint-2); }
 
+/* ---- fixed-height pane region ---- */
+
+/* All four panes share one grid cell, so the region is always as tall as the
+   tallest of them and the bezel never changes shape when you switch tabs.
+   154cqw is the floor from the handoff; the stack is what guarantees it holds
+   at every mount width. Hidden panes keep their space but leave the tab order. */
+.pdt-panes {
+  min-height: 154cqw;
+  display: grid;
+}
+.pdt-pane {
+  grid-area: 1 / 1;
+  align-self: start;
+  visibility: hidden;
+}
+.pdt-pane.is-on { visibility: visible; }
+
+/* ---- JOG: DRO ---- */
+
 .pdt-dro { display: flex; flex-direction: column; }
 .pdt-dro__row {
   display: flex;
   align-items: center;
   gap: 3cqw;
   padding: 2.4cqw 4cqw;
-  border-bottom: 1px solid #16181d;
+  border-bottom: 1px solid var(--pdt-seam);
 }
 .pdt-dro__axis {
   width: 7.4cqw;
@@ -995,6 +1064,7 @@ img, svg, video { display: block; max-width: 100%; }
   font-weight: 600;
   letter-spacing: -.3px;
   color: var(--head-2);
+  font-variant-numeric: tabular-nums;
 }
 .pdt-dro__mach {
   margin-left: auto;
@@ -1003,11 +1073,13 @@ img, svg, video { display: block; max-width: 100%; }
   color: var(--text-faint-2);
 }
 
+/* ---- JOG: STEP / JOYSTICK ---- */
+
 .pdt-modes {
   display: flex;
   gap: 1cqw;
   margin: 3cqw 4cqw 0;
-  background: #16181d;
+  background: var(--pdt-seam);
   padding: 1cqw;
 }
 .pdt-modes__btn {
@@ -1018,8 +1090,63 @@ img, svg, video { display: block; max-width: 100%; }
   font-weight: 700;
   letter-spacing: 1px;
   color: var(--text-mute);
+  background: transparent;
 }
 .pdt-modes__btn.is-on { background: var(--amber); color: var(--on-amber-2); }
+
+/* ---- sliders (jog speed, feed, spindle) ---- */
+
+.pdt-slider {
+  position: relative;
+  flex: 1;
+  height: 4.4cqw;
+  background: var(--pdt-track);
+  touch-action: none;
+  cursor: pointer;
+}
+.pdt-slider__fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+}
+.pdt-slider--amber .pdt-slider__fill { background: linear-gradient(90deg, rgba(255, 178, 36, .45), var(--amber)); }
+.pdt-slider--cyan  .pdt-slider__fill { background: linear-gradient(90deg, rgba(63, 210, 255, .4), var(--cyan)); }
+.pdt-slider__tick {
+  position: absolute;
+  top: -1.4cqw;
+  bottom: -1.4cqw;
+  width: 1px;
+  background: var(--text-disabled);
+}
+.pdt-slider__handle {
+  position: absolute;
+  top: 50%;
+  width: 4cqw;
+  height: 7cqw;
+  margin-left: -2cqw;
+  transform: translateY(-50%);
+  border-radius: 16%;
+  cursor: grab;
+  touch-action: none;
+}
+.pdt-slider--amber .pdt-slider__handle {
+  background: var(--amber-knob);
+  border: 1px solid var(--amber-hi);
+  box-shadow: 0 2px 8px rgba(255, 178, 36, .5);
+}
+.pdt-slider--cyan .pdt-slider__handle {
+  background: var(--cyan-knob);
+  border: 1px solid var(--cyan-edge);
+  box-shadow: 0 2px 8px rgba(63, 210, 255, .5);
+}
+.pdt-slider--tall .pdt-slider__handle {
+  width: 4.4cqw;
+  height: 8cqw;
+  margin-left: -2.2cqw;
+  border-radius: 14%;
+}
+.pdt-slider.is-dragging .pdt-slider__handle { cursor: grabbing; }
 
 .pdt-speed {
   display: flex;
@@ -1034,36 +1161,16 @@ img, svg, video { display: block; max-width: 100%; }
   color: var(--text-faint-2);
   flex: none;
 }
-.pdt-speed__track {
-  position: relative;
-  flex: 1;
-  height: 1.8cqw;
-  background: #1e2128;
-}
-.pdt-speed__fill {
-  position: absolute;
-  left: 0;
-  width: 22%;
-  height: 100%;
-  background: linear-gradient(90deg, rgba(255, 178, 36, 0), var(--amber));
-}
-.pdt-speed__knob {
-  position: absolute;
-  left: 22%;
-  top: 50%;
-  width: 3.6cqw;
-  height: 3.6cqw;
-  margin-left: -1.8cqw;
-  transform: translateY(-50%);
-  background: #e7eaf0;
-}
 .pdt-speed__pct {
   font-family: var(--f-head);
   font-size: 4.2cqw;
   font-weight: 600;
   color: var(--amber);
   flex: none;
+  font-variant-numeric: tabular-nums;
 }
+
+/* ---- JOG: joystick + Z stick ---- */
 
 .pdt-jog {
   display: flex;
@@ -1075,10 +1182,11 @@ img, svg, video { display: block; max-width: 100%; }
   position: relative;
   flex: 1;
   aspect-ratio: 1;
-  background: #0b0c0f;
+  background: var(--pdt-well);
   border: 1px solid var(--line-5);
   border-radius: 50%;
   box-shadow: inset 0 3px 12px rgba(0, 0, 0, .7);
+  touch-action: none;
 }
 .pdt-well__ring {
   position: absolute;
@@ -1107,17 +1215,21 @@ img, svg, video { display: block; max-width: 100%; }
   background: var(--amber-knob);
   border: 1px solid var(--amber-hi);
   box-shadow: 0 3px 12px rgba(255, 178, 36, .45), inset 0 1px 0 rgba(255, 255, 255, .4);
-  animation: joyOrbit 5.5s ease-in-out infinite;
+  cursor: grab;
+  touch-action: none;
+  will-change: transform;
+  animation: joyIdle 6s ease-in-out infinite;
 }
 
 .pdt-zstick {
   position: relative;
-  width: 13%;
+  width: 14%;
   flex: none;
-  background: #0b0c0f;
+  background: var(--pdt-well);
   border: 1px solid var(--line-5);
   box-shadow: inset 0 3px 8px rgba(0, 0, 0, .65);
   overflow: hidden;
+  touch-action: none;
 }
 .pdt-zstick__lbl {
   position: absolute;
@@ -1131,33 +1243,189 @@ img, svg, video { display: block; max-width: 100%; }
 .pdt-zstick__lbl--n { bottom: 3%; }
 .pdt-zstick__grip {
   position: absolute;
-  left: 50%;
+  left: 8%;
   top: 42%;
-  width: 78%;
+  width: 84%;
   height: 15%;
+  border-radius: 8%;
   background: var(--amber-knob);
   border: 1px solid var(--amber-hi);
-  animation: zBob 5.5s ease-in-out infinite;
+  box-shadow: 0 2px 8px rgba(255, 178, 36, .4);
+  cursor: grab;
+  touch-action: none;
+  will-change: transform;
+  animation: zIdle 5s ease-in-out infinite;
 }
+
+/* ---- RUN tab ---- */
+
+.pdt-pane[data-pane="RUN"],
+.pdt-pane[data-pane="CAM"],
+.pdt-pane[data-pane="MORE"] { padding: 4cqw; }
+
+.pdt-run__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+.pdt-run__file {
+  font-family: var(--f-head);
+  font-size: 4.6cqw;
+  font-weight: 600;
+  color: var(--head-2);
+}
+.pdt-run__pct {
+  font-family: var(--f-mono);
+  font-size: 3cqw;
+  color: var(--text-mute);
+}
+.pdt-run__bar {
+  position: relative;
+  height: 2.4cqw;
+  margin-top: 2.4cqw;
+  background: var(--pdt-track);
+  overflow: hidden;
+}
+.pdt-run__fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 62%;
+  background: repeating-linear-gradient(115deg, #ffb224 0 12px, #e08a00 12px 24px);
+  background-size: 28px 100%;
+}
+.pdt-run__fill.is-running { animation: runStripe 1s linear infinite; }
+.pdt-run__meta {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.6cqw;
+  font-family: var(--f-mono);
+  font-size: 2.7cqw;
+  color: var(--text-faint-2);
+}
+
+.pdt-ovrs {
+  display: flex;
+  flex-direction: column;
+  gap: 4.4cqw;
+  margin-top: 4.4cqw;
+}
+.pdt-ovr__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+.pdt-ovr__label {
+  font-size: 2.7cqw;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--text-faint-2);
+}
+.pdt-ovr__val {
+  font-family: var(--f-head);
+  font-size: 4.6cqw;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.pdt-ovr__val--amber { color: var(--amber); }
+.pdt-ovr__val--cyan  { color: var(--cyan); }
+.pdt-ovr .pdt-slider { margin-top: 2.6cqw; }
+
+.pdt-run__btn {
+  margin-top: 4cqw;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2cqw;
+  padding: 3.6cqw 0;
+  background: var(--amber);
+  color: var(--on-amber-2);
+}
+.pdt-run__btn.is-running {
+  background: rgba(229, 72, 77, .12);
+  color: var(--red-soft);
+}
+.pdt-run__btn-icon { font-size: 4.2cqw; line-height: 1; }
+.pdt-run__btn-text {
+  font-family: var(--f-head);
+  font-size: 4cqw;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+/* ---- CAM / MORE lists ---- */
+
+.pdt-list__head {
+  display: block;
+  font-family: var(--f-head);
+  font-size: 4.6cqw;
+  font-weight: 600;
+  color: var(--head-2);
+}
+.pdt-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2cqw;
+  margin-top: 3cqw;
+}
+.pdt-row {
+  display: flex;
+  align-items: center;
+  gap: 2.6cqw;
+  width: 100%;
+  padding: 3cqw;
+  background: var(--pdt-row);
+  border: 1px solid var(--pdt-row-line);
+}
+.pdt-row__glyph {
+  width: 6.4cqw;
+  height: 6.4cqw;
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 178, 36, .12);
+  color: var(--amber);
+  font-size: 3.4cqw;
+}
+.pdt-row__name {
+  font-size: 3.4cqw;
+  font-weight: 600;
+  color: var(--text-strong);
+}
+.pdt-row__chev { margin-left: auto; color: var(--text-disabled); font-size: 3.4cqw; }
+.pdt-row.is-pressed { background: rgba(255, 178, 36, .12); }
+.pdt-row.is-pressed .pdt-row__name { color: var(--amber); }
+
+.pdt-list--cyan .pdt-row__glyph { background: rgba(63, 210, 255, .1); color: var(--cyan); }
+.pdt-list--cyan .pdt-row.is-pressed { background: rgba(63, 210, 255, .1); }
+.pdt-list--cyan .pdt-row.is-pressed .pdt-row__name { color: var(--cyan); }
+
+/* ---- persistent: E-STOP + tab bar ---- */
 
 .pdt-estop {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
   padding: 3.4cqw 0;
   margin-top: 1cqw;
   background: rgba(229, 72, 77, .08);
   border-top: 2px solid var(--red);
   border-bottom: 2px solid var(--red);
 }
-.pdt-estop span {
+.pdt-estop__text {
   font-size: 4.6cqw;
   font-weight: 700;
   letter-spacing: 4px;
   color: var(--red-soft);
 }
+.pdt-estop.is-tripped { background: var(--red); }
+.pdt-estop.is-tripped .pdt-estop__text { color: var(--on-red); }
 
-.pdt-tabs { display: flex; border-top: 1px solid #1d2026; }
+.pdt-tabs { display: flex; border-top: 1px solid var(--pdt-row-line); }
 .pdt-tabs__tab {
   flex: 1;
   display: flex;
@@ -1166,28 +1434,32 @@ img, svg, video { display: block; max-width: 100%; }
   gap: 1cqw;
   padding: 3cqw 0;
   color: var(--text-faint-2);
+  background: transparent;
 }
 .pdt-tabs__tab.is-on {
   color: var(--amber);
   box-shadow: inset 0 2px 0 var(--amber);
-  background: #0e0f12;
+  background: var(--pdt-row);
 }
 .pdt-tabs__icon { font-size: 4cqw; line-height: 1; }
 .pdt-tabs__name { font-size: 2.6cqw; font-weight: 700; letter-spacing: .5px; }
 
-@keyframes joyOrbit {
+/* ---- pendant motion ---- */
+
+@keyframes joyIdle {
   0%   { transform: translate(0, 0); }
-  22%  { transform: translate(42%, -22%); }
-  44%  { transform: translate(6%, -46%); }
-  66%  { transform: translate(-40%, -20%); }
-  82%  { transform: translate(-14%, 20%); }
+  20%  { transform: translate(38%, -20%); }
+  42%  { transform: translate(6%, -40%); }
+  62%  { transform: translate(-36%, -16%); }
+  82%  { transform: translate(-12%, 22%); }
   100% { transform: translate(0, 0); }
 }
-@keyframes zBob {
-  0%, 100% { transform: translate(-50%, 0); }
-  50%      { transform: translate(-50%, -120%); }
+@keyframes zIdle {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-120%); }
 }
 @keyframes livePulse { 0%, 100% { opacity: 1; } 50% { opacity: .28; } }
+@keyframes runStripe { from { background-position: 0 0; } to { background-position: 28px 0; } }
 
 /* ---------- motion preferences ---------- */
 
@@ -1196,6 +1468,7 @@ img, svg, video { display: block; max-width: 100%; }
   .pdt-well__knob,
   .pdt-zstick__grip,
   .pdt-status__live,
+  .pdt-run__fill,
   .tag__dot--rec { animation: none; }
   .faq-item__body,
   .faq-item__mark,

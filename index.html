@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HelmCNC — A modern control screen for Dynomotion KFLOP &amp; Kogna</title>
+<meta name="description" content="Touch-first control software for your Dynomotion KFLOP or Kogna machine — phone pendant included. $99 one-time, yours forever. Free 14-day full-featured trial.">
+<meta name="theme-color" content="#060709">
+<link rel="canonical" href="https://helmcnc.com/">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="HelmCNC">
+<meta property="og:title" content="HelmCNC — A modern control screen for Dynomotion KFLOP &amp; Kogna">
+<meta property="og:description" content="Touch-first control software for your KFLOP or Kogna machine — with a phone pendant included. One-time purchase. Never stops working.">
+<meta property="og:image" content="https://helmcnc.com/assets/img/hero-poster.jpg">
+<meta property="og:url" content="https://helmcnc.com/">
+<meta name="twitter:card" content="summary_large_image">
+
+<script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Barlow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+
+<body id="top">
+<a class="skip-link" href="#features">Skip to content</a>
+
+<!-- ═══════════════════ NAV ═══════════════════ -->
+<div class="nav-bar">
+  <nav class="nav" aria-label="Primary">
+    <a class="logo" href="#top" aria-label="HelmCNC — home">
+      <svg width="25" height="23" viewBox="0 0 110 100" aria-hidden="true"><path d="M 7 8 L 43 2 V 36 H 63 V 2 L 99 8 V 92 L 63 98 V 64 H 43 V 98 L 7 92 Z" fill="#ffb224"/></svg>
+      <span class="wordmark"><span class="wordmark__helm">HELM</span><span class="wordmark__cnc">CNC</span></span>
+    </a>
+    <div class="nav__links">
+      <a class="nav__link" href="#features">Features</a>
+      <a class="nav__link" href="#pendant">Pendant</a>
+      <a class="nav__link" href="#pricing">Pricing</a>
+      <a class="nav__link" href="#faq">FAQ</a>
+      <a class="nav__link" href="#support">Support</a>
+      <a class="nav__cta" href="#pricing">Download</a>
+    </div>
+  </nav>
+</div>
+
+<!-- ═══════════════════ 1 · HERO ═══════════════════ -->
+<section class="hero">
+  <div class="hero__inner">
+    <span class="eyebrow hero__eyebrow">Control software · Dynomotion KFLOP / Kogna</span>
+    <h1 class="hero__h1">A modern control screen for Dynomotion KFLOP &amp; Kogna.</h1>
+    <p class="hero__sub">Touch-first control software for your KFLOP or Kogna machine — with a phone pendant included.</p>
+
+    <div class="hero__ctas">
+      <a class="btn btn--amber" href="#pricing">
+        <span class="btn__label">Download</span>
+        <span class="btn__sub">FREE 14-DAY TRIAL · FULL-FEATURED</span>
+      </a>
+      <a class="btn btn--ghost" href="#pricing">
+        <span class="btn__label">Buy — $99</span>
+        <span class="btn__sub">ONE-TIME · YOURS FOREVER</span>
+      </a>
+    </div>
+
+    <div class="hero__trust">
+      <span>One-time purchase</span><span class="sep">·</span><span>No recurring fees</span><span class="sep">·</span><span class="lit">Never stops working</span>
+    </div>
+  </div>
+
+  <!-- hero visual: control video + live pendant -->
+  <div class="hero__visual">
+    <div class="hero__visual-row">
+      <div class="hero__video-col">
+        <div class="frame">
+          <span class="frame__tick frame__tick--tl"></span>
+          <span class="frame__tick frame__tick--tr"></span>
+          <span class="frame__tick frame__tick--bl"></span>
+          <span class="frame__tick frame__tick--br"></span>
+          <div class="frame__screen">
+            <video class="js-autoplay" autoplay muted loop playsinline preload="metadata"
+                   poster="assets/img/hero-poster.jpg" aria-label="The HelmCNC Control screen running a job">
+              <source src="assets/video/helm9.mp4" type="video/mp4">
+              <img src="assets/img/hero-poster.jpg" alt="The HelmCNC Control screen running a job">
+            </video>
+            <div class="tag">
+              <span class="tag__dot tag__dot--rec"></span>
+              <span class="tag__label">LIVE · CONTROL SCREEN</span>
+            </div>
+          </div>
+        </div>
+        <p class="caption">The full Control screen running a real job.</p>
+      </div>
+
+      <div class="hero__pendant-col">
+        <div class="pendant-mount" data-pendant-clone style="width:100%; max-width:250px;"></div>
+        <p class="caption">Your phone is the pendant — included. Connects over your WiFi in seconds.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ 2 · FEATURES ═══════════════════ -->
+<section class="section section--anchor" id="features">
+  <div class="wrap features__inner">
+
+    <p class="features__fact">Works with your existing KFLOP/Kogna setup — same motors, drives, I/O and configs. You're adding a screen, not changing your electronics.</p>
+
+    <!-- A · one screen -->
+    <div class="split">
+      <div class="split__copy">
+        <span class="eyebrow">One screen</span>
+        <h2 class="h2 h2--block">The whole machine on one screen</h2>
+        <p class="lede">DRO, jog pad, toolpath viewer, program list, feed and spindle overrides, and machine state — one dense cockpit built for a shop touchscreen. Everything that matters mid-cut is already in front of you. No menu-diving with a tool spinning.</p>
+        <div class="chips">
+          <span class="chip">DRO</span>
+          <span class="chip">JOG PAD</span>
+          <span class="chip">TOOLPATH</span>
+          <span class="chip">PROGRAM</span>
+          <span class="chip">OVERRIDES</span>
+          <span class="chip">STATE</span>
+        </div>
+      </div>
+      <div class="media split__media">
+        <img src="assets/img/cockpit-run.jpg" alt="The HelmCNC Control cockpit running a program" loading="lazy" width="1680" height="945">
+      </div>
+    </div>
+
+    <!-- toolpath render strip -->
+    <div class="strip">
+      <div class="media">
+        <video class="js-autoplay" autoplay muted loop playsinline preload="metadata"
+               poster="assets/img/quickparts.jpg" aria-label="The toolpath rendering and following the tool as it cuts">
+          <source src="assets/video/hrlmcnc4.mp4" type="video/mp4">
+          <img src="assets/img/quickparts.jpg" alt="The toolpath rendering and following the tool as it cuts">
+        </video>
+        <div class="tag">
+          <span class="tag__dot tag__dot--cyan"></span>
+          <span class="tag__label">LIVE · TOOLPATH</span>
+        </div>
+      </div>
+      <p class="caption">Watch the toolpath render and follow the tool as it cuts.</p>
+    </div>
+
+    <!-- B · safety -->
+    <div class="split split--reverse">
+      <div class="media split__media">
+        <img src="assets/img/cockpit-run2.jpg" alt="HelmCNC running with the E-STOP always visible" loading="lazy" width="1680" height="945">
+      </div>
+      <div class="split__copy">
+        <span class="eyebrow eyebrow--red">Built to stop</span>
+        <h2 class="h2 h2--block">Safety is a feature, not a setting</h2>
+        <div class="bullets">
+          <div class="bullet"><span class="bullet__dot"></span><p>The <strong>E-STOP</strong> stays on screen at all times.</p></div>
+          <div class="bullet"><span class="bullet__dot"></span><p>A machine state machine gates every control, so a button that looks live <em>is</em> live.</p></div>
+          <div class="bullet"><span class="bullet__dot"></span><p>Soft-limit approach — the machine eases into its limits instead of slamming them.</p></div>
+          <div class="bullet"><span class="bullet__dot"></span><p>Limit checking — HelmCNC checks your program against the work envelope and warns you before a job would run past the limits.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- C · Quick Parts -->
+    <div class="split">
+      <div class="split__copy">
+        <span class="eyebrow">In-app toolpaths</span>
+        <h2 class="h2 h2--block">Quick Parts</h2>
+        <p class="lede">Generate toolpaths right inside HelmCNC — no separate CAM package. Surface a slab, flatten a spoilboard, import a DXF and cut it, or drop in a quick rectangle. Set depth, tool and lead-ins, preview, and send to the machine.</p>
+        <div class="chips">
+          <span class="chip">SURFACING</span>
+          <span class="chip">SPOILBOARD</span>
+          <span class="chip">DXF IMPORT</span>
+          <span class="chip">QUICK RECTANGLE</span>
+          <span class="chip">LEAD-IN / OUT</span>
+          <span class="chip">LIVE PREVIEW</span>
+        </div>
+      </div>
+      <div class="split__media-stack">
+        <div class="media">
+          <video class="js-autoplay" autoplay muted loop playsinline preload="metadata"
+                 poster="assets/img/quickparts.jpg" aria-label="Drawing a part and generating its toolpath inside HelmCNC">
+            <source src="assets/video/helm5.mp4" type="video/mp4">
+            <img src="assets/img/quickparts.jpg" alt="Drawing a part and generating its toolpath inside HelmCNC">
+          </video>
+          <div class="tag">
+            <span class="tag__dot"></span>
+            <span class="tag__label">LIVE · QUICK PARTS</span>
+          </div>
+        </div>
+        <p class="caption">Draw a part and generate the toolpath right in the app — no CAM package.</p>
+      </div>
+    </div>
+
+    <!-- rest of the cockpit -->
+    <div>
+      <div class="tiles-head">
+        <span class="eyebrow eyebrow--quiet">The rest of the cockpit</span>
+      </div>
+      <div class="tiles">
+        <div class="tile">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ffb224" stroke-width="1.6" aria-hidden="true"><rect x="3" y="6" width="8" height="4"/><rect x="3" y="6" width="18" height="14"/></svg>
+          <h3>Files</h3>
+          <p>Browse, preview and load G-code straight from the machine.</p>
+        </div>
+        <div class="tile">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ffb224" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="2.4" fill="#ffb224"/></svg>
+          <h3>Tools</h3>
+          <p>Tool table, lengths and offsets, all in one place.</p>
+        </div>
+        <div class="tile">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ffb224" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+          <h3>Macros</h3>
+          <p>Your buttons for homing, probing, park and custom routines.</p>
+        </div>
+        <div class="tile">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ffb224" stroke-width="1.6" aria-hidden="true"><rect x="3" y="12" width="4" height="8"/><rect x="10" y="7" width="4" height="13"/><rect x="17" y="3" width="4" height="17"/></svg>
+          <h3>Diagnostics</h3>
+          <p>Live KFLOP I/O, positions and status when something's off.</p>
+        </div>
+        <div class="tile">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ffb224" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="3.2"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.5 5.5l2 2M16.5 16.5l2 2M18.5 5.5l-2 2M7.5 16.5l-2 2"/></svg>
+          <h3>Settings</h3>
+          <p>Axes, units, limits and connection — set once, forget.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════ 3 · PENDANT ═══════════════════ -->
+<section class="section section--anchor pendant-sec" id="pendant">
+  <div class="wrap pendant-sec__inner">
+    <div class="pendant-sec__device">
+      <!-- Source of truth for the live pendant; JS clones it into the hero. -->
+      <div class="pendant-mount" data-pendant-source style="width:100%; max-width:300px;">
+
+        <div class="pendant" role="img" aria-label="The HelmCNC phone pendant on the joystick tab: X, Y and Z readouts, a jog joystick and an E-STOP.">
+          <div class="pendant__bezel">
+            <div class="pendant__screen">
+
+              <div class="pdt-status">
+                <span class="pdt-status__live"></span>
+                <span class="pdt-status__net">KFLOP · 4ms</span>
+                <span class="pdt-status__state">
+                  <span class="pdt-status__state-icon">◇</span>
+                  <span class="pdt-status__state-text">IDLE</span>
+                </span>
+                <span class="pdt-status__wcs">G54</span>
+                <span class="pdt-status__units">mm</span>
+              </div>
+
+              <div class="pdt-dro">
+                <div class="pdt-dro__row">
+                  <span class="pdt-dro__axis">X</span>
+                  <span class="pdt-dro__val">0.000</span>
+                  <span class="pdt-dro__mach">MACH 0.000</span>
+                </div>
+                <div class="pdt-dro__row">
+                  <span class="pdt-dro__axis">Y</span>
+                  <span class="pdt-dro__val">0.000</span>
+                  <span class="pdt-dro__mach">MACH 0.000</span>
+                </div>
+                <div class="pdt-dro__row">
+                  <span class="pdt-dro__axis">Z</span>
+                  <span class="pdt-dro__val">74.000</span>
+                  <span class="pdt-dro__mach">MACH 86.500</span>
+                </div>
+              </div>
+
+              <div class="pdt-modes">
+                <div class="pdt-modes__btn">JOG</div>
+                <div class="pdt-modes__btn is-on">JOYSTICK</div>
+              </div>
+
+              <div class="pdt-speed">
+                <span class="pdt-speed__label">CONT SPEED</span>
+                <div class="pdt-speed__track">
+                  <div class="pdt-speed__fill"></div>
+                  <div class="pdt-speed__knob"></div>
+                </div>
+                <span class="pdt-speed__pct">8%</span>
+              </div>
+
+              <div class="pdt-jog">
+                <div class="pdt-well">
+                  <div class="pdt-well__ring"></div>
+                  <span class="pdt-well__lbl pdt-well__lbl--yp">Y+</span>
+                  <span class="pdt-well__lbl pdt-well__lbl--yn">Y−</span>
+                  <span class="pdt-well__lbl pdt-well__lbl--xn">X−</span>
+                  <span class="pdt-well__lbl pdt-well__lbl--xp">X+</span>
+                  <div class="pdt-well__knob"></div>
+                </div>
+                <div class="pdt-zstick">
+                  <span class="pdt-zstick__lbl pdt-zstick__lbl--p">Z+</span>
+                  <span class="pdt-zstick__lbl pdt-zstick__lbl--n">Z−</span>
+                  <div class="pdt-zstick__grip"></div>
+                </div>
+              </div>
+
+              <div class="pdt-estop"><span>E-STOP</span></div>
+
+              <div class="pdt-tabs">
+                <div class="pdt-tabs__tab is-on"><span class="pdt-tabs__icon">✛</span><span class="pdt-tabs__name">JOG</span></div>
+                <div class="pdt-tabs__tab"><span class="pdt-tabs__icon">▶</span><span class="pdt-tabs__name">RUN</span></div>
+                <div class="pdt-tabs__tab"><span class="pdt-tabs__icon">◎</span><span class="pdt-tabs__name">CAM</span></div>
+                <div class="pdt-tabs__tab"><span class="pdt-tabs__icon">⋯</span><span class="pdt-tabs__name">MORE</span></div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="pendant-sec__copy">
+      <span class="eyebrow eyebrow--cyan">Included — not an add-on</span>
+      <h2 class="h2" style="line-height:1.0;">Your phone is the pendant.</h2>
+      <p class="pendant-sec__lead">Pair over your local WiFi in seconds — nothing cloud, nothing to sign into. Then run the machine from anywhere in the shop.</p>
+      <div class="bullets pendant-sec__bullets">
+        <div class="bullet bullet--cyan"><span class="bullet__dot"></span><p>Run and pause jobs, jog, and nudge feed &amp; spindle — plus programmable buttons for vacuum, dust extraction, coolant/mist and your own outputs, right from your phone.</p></div>
+        <div class="bullet bullet--cyan"><span class="bullet__dot"></span><p>Jog with your thumb — the joystick and jog buttons are right there.</p></div>
+        <div class="bullet bullet--cyan"><span class="bullet__dot"></span><p>Watch progress from anywhere in the shop.</p></div>
+        <div class="bullet bullet--red-sm"><span class="bullet__dot"></span><p>E-STOP always on screen.</p></div>
+      </div>
+      <p class="pendant-sec__foot">Runs on the phone you already carry · no extra hardware to buy</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ 4 · COMING SOON ═══════════════════ -->
+<section class="section section--alt">
+  <div class="wrap" style="padding-top:clamp(52px,7vw,88px); padding-bottom:clamp(52px,7vw,88px);">
+    <div class="soon__head">
+      <span class="eyebrow eyebrow--quiet">On the roadmap</span>
+      <h2 class="soon__h2">Coming later, as paid add-ons</h2>
+    </div>
+    <div class="soon__grid">
+      <div class="soon-card">
+        <div class="soon-card__top">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5b6270" stroke-width="1.6" aria-hidden="true"><rect x="4" y="4" width="16" height="16"/><path d="M4 10h16"/></svg>
+          <span class="soon-card__flag">COMING SOON</span>
+        </div>
+        <h3>Studio</h3>
+        <p>Full CAM workspace — nesting, tabs, ramps and simulation.</p>
+      </div>
+      <div class="soon-card">
+        <div class="soon-card__top">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5b6270" stroke-width="1.6" aria-hidden="true"><path d="M4 20L20 4"/><path d="M14 4h6v6"/></svg>
+          <span class="soon-card__flag">COMING SOON</span>
+        </div>
+        <h3>Engrave</h3>
+        <p>V-carving, rasters and photo engraving from the same cockpit.</p>
+      </div>
+      <div class="soon-card">
+        <div class="soon-card__top">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5b6270" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="2.5"/></svg>
+          <span class="soon-card__flag">COMING SOON</span>
+        </div>
+        <h3>Vision</h3>
+        <p>Camera-based work alignment and edge finding.</p>
+      </div>
+      <div class="soon-card">
+        <div class="soon-card__top">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5b6270" stroke-width="1.6" aria-hidden="true"><path d="M12 3l7 4v6c0 4-3 6-7 8-4-2-7-4-7-8V7z"/></svg>
+          <span class="soon-card__flag">COMING SOON</span>
+        </div>
+        <h3>Shepherd</h3>
+        <p>Guided setup with a reference puck and auto work-zero.</p>
+      </div>
+    </div>
+    <p class="soon__foot">Not shipping today — listed so you know where HelmCNC is going, not to pad the box.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════ 5 · PRICING ═══════════════════ -->
+<section class="section section--anchor pricing" id="pricing">
+  <div class="wrap pricing__inner">
+    <div class="pricing__head">
+      <span class="eyebrow">Straight pricing</span>
+      <h2 class="h2">Buy it once. Own it.</h2>
+    </div>
+
+    <div class="pricing__grid">
+      <!-- $99 one-time -->
+      <div class="price price--primary">
+        <span class="price__badge">BEST VALUE</span>
+        <span class="price__kind">One-time</span>
+        <div class="price__row">
+          <span class="price__num">$99</span>
+          <span class="price__unit">/ perpetual license</span>
+        </div>
+        <p class="price__note">Everything in V1, including the phone pendant. <strong>24 months of updates included.</strong></p>
+        <div class="price__list">
+          <div class="price__item"><span class="price__check">✓</span><span>The full Control cockpit + Quick Parts</span></div>
+          <div class="price__item"><span class="price__check">✓</span><span>Phone pendant included</span></div>
+          <div class="price__item"><span class="price__check">✓</span><span>Yours forever — no forced renewals</span></div>
+        </div>
+        <a class="price__cta price__cta--amber" href="#" data-checkout="perpetual">Buy — $99</a>
+      </div>
+
+      <!-- rent-to-own -->
+      <div class="price price--alt">
+        <span class="price__kind">Rent-to-own</span>
+        <div class="price__row">
+          <span class="price__num">$19</span>
+          <span class="price__unit">× 6 months</span>
+        </div>
+        <p class="price__note">Six monthly payments (<strong>$114 total</strong>) and the license is yours — the same perpetual license. <strong>Own it in 6 months.</strong></p>
+        <div class="price__list">
+          <div class="price__item"><span class="price__check">✓</span><span>Identical V1 features + pendant</span></div>
+          <div class="price__item"><span class="price__check">✓</span><span>Converts to a perpetual license on payment 6</span></div>
+          <div class="price__item"><span class="price__check">✓</span><span>Lower up-front, same destination</span></div>
+        </div>
+        <a class="price__cta price__cta--ghost" href="#" data-checkout="rent-to-own">Start rent-to-own</a>
+      </div>
+    </div>
+
+    <div class="pricing__foot">
+      <p>After the included 24 months, an optional <span class="lit">$49/yr</span> keeps updates coming. <strong>Skipping it never disables your software</strong> — the version you bought works forever. And there's a <span class="trial">14-day, full-featured trial</span> before any money changes hands.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ 6 · FIRST RELEASE ═══════════════════ -->
+<section class="section section--alt band">
+  <div class="wrap band__inner">
+    <span class="eyebrow">First release · updates included</span>
+    <p>This is HelmCNC's first release. Updates ship often — they download quietly in the background and turn on the next time you open the app. And we build to customer feedback: tell us what you need and it goes on the list.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════ 7 · FAQ ═══════════════════ -->
+<section class="section section--anchor section--alt" id="faq">
+  <div class="wrap faq__inner">
+    <div class="faq__head">
+      <span class="eyebrow eyebrow--quiet">Straight answers</span>
+      <h2 class="h2 faq__h2">Questions a builder actually asks</h2>
+    </div>
+    <div class="faq__list">
+
+      <div class="faq-item is-open">
+        <button class="faq-item__q" type="button" aria-expanded="true" aria-controls="faq-a1">
+          What do I need to run it?
+          <span class="faq-item__mark" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-item__body" id="faq-a1">
+          <p>A Windows PC and a Dynomotion KFLOP or Kogna controller. If KMotionCNC runs your machine today, HelmCNC runs on the same board and the same wiring — nothing about the electronics changes.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-item__q" type="button" aria-expanded="false" aria-controls="faq-a2">
+          What happens if I never renew updates?
+          <span class="faq-item__mark" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-item__body" id="faq-a2">
+          <p>It keeps working — forever. Renewal only adds new updates. The version you own never expires, never phones home to check, and never stops.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-item__q" type="button" aria-expanded="false" aria-controls="faq-a3">
+          How does the license work?
+          <span class="faq-item__mark" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-item__body" id="faq-a3">
+          <p>It activates against your controller board. That pairing is what lets us sell it once instead of renting it — your license lives with the machine it runs.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-item__q" type="button" aria-expanded="false" aria-controls="faq-a4">
+          Can I try it before I pay?
+          <span class="faq-item__mark" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-item__body" id="faq-a4">
+          <p>Yes. 14 days, full-featured, nothing crippled and no card required — long enough to run real parts and decide it earns a spot on the shop PC.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-item__q" type="button" aria-expanded="false" aria-controls="faq-a5">
+          Will it support GRBL / FluidNC / UCCNC?
+          <span class="faq-item__mark" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-item__body" id="faq-a5">
+          <p>Planned. The controller layer is pluggable — KFLOP and Kogna ship first, and other controllers follow from there.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-item__q" type="button" aria-expanded="false" aria-controls="faq-a6">
+          Refunds and support?
+          <span class="faq-item__mark" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-item__body" id="faq-a6">
+          <p>Email support@helmcnc.com — a builder answers, not a ticket bot. Not happy in the first 30 days? We refund it.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ 8 · FOOTER ═══════════════════ -->
+<footer class="footer section--anchor" id="support">
+  <div class="wrap footer__inner">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <div class="logo">
+          <svg width="24" height="22" viewBox="0 0 110 100" aria-hidden="true"><path d="M 7 8 L 43 2 V 36 H 63 V 2 L 99 8 V 92 L 63 98 V 64 H 43 V 98 L 7 92 Z" fill="#ffb224"/></svg>
+          <span class="wordmark"><span class="wordmark__helm">HELM</span><span class="wordmark__cnc">CNC</span></span>
+        </div>
+        <p class="footer__tagline">A modern control screen for Dynomotion KFLOP &amp; Kogna. Keep your electronics, change your cockpit.</p>
+        <p class="footer__credit">Built on the KMotion libraries with Dynomotion's permission.</p>
+      </div>
+
+      <div class="footer__cols">
+        <div class="footer__col">
+          <span class="footer__col-head">Product</span>
+          <a href="#features">Features</a>
+          <a href="#pendant">Pendant</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#pricing">Download trial</a>
+        </div>
+        <div class="footer__col">
+          <span class="footer__col-head">Docs</span>
+          <a href="#">Quick-start</a>
+          <a href="#">Documentation</a>
+          <a href="#">Changelog</a>
+        </div>
+        <div class="footer__col">
+          <span class="footer__col-head">Support</span>
+          <a href="mailto:support@helmcnc.com">support@helmcnc.com</a>
+          <a href="#">Forum thread</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer__legal">
+      <span>© 2026 HelmCNC · Independent product · Not affiliated with Dynomotion</span>
+      <div class="footer__legal-links">
+        <a href="#">Terms</a>
+        <a href="#">Privacy</a>
+        <a href="#">License</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/site.js" defer></script>
+</body>
+</html>

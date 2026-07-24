@@ -648,6 +648,15 @@
      public_key is meant to be public (it's the checkout key, not the secret).
      The FOUNDER coupon is applied so the price shown matches the advertised
      $129 founder price; remove `coupon` (or change it) to show list price. -->
+<!-- jQuery is a HARD dependency of checkout.min.js: its body is `}(jQuery),
+     function(){ … FS.Checkout … }`, so with no jQuery on the page that first
+     call throws ReferenceError and everything after it — including
+     FS.Checkout — never runs. FS.Logger is defined before that point, so the
+     script *looks* loaded while the Buy buttons silently do nothing (the guard
+     below turns them into no-ops). Keep this tag ABOVE the Freemius one. -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+        crossorigin="anonymous"></script>
 <script src="https://checkout.freemius.com/checkout.min.js"></script>
 <script>
 (function () {

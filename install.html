@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Installing HelmCNC on Windows — first run</title>
+<meta name="description" content="How to install HelmCNC on Windows, including the one-time Windows SmartScreen and User Account Control prompts you'll see, and how to verify your download.">
+<meta name="robots" content="index,follow">
+<style>
+  :root{
+    --bg:#0a0b0d; --panel:#121418; --seam:#1d2026;
+    --amber:#ffb224; --text:#e8ecf3; --muted:#aab1bd; --dim:#8a919e;
+    --ok:#4bd08b;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{
+    background:var(--bg); color:var(--text);
+    font-family:"Barlow",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.65; font-size:16px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:780px; margin:0 auto; padding:48px 24px 80px}
+  a{color:var(--amber); text-decoration:none}
+  a:hover{text-decoration:underline}
+  .brand{display:flex; align-items:center; gap:12px; margin-bottom:40px}
+  .brand__name{font-family:"Oswald",-apple-system,"Segoe UI",sans-serif; font-weight:700; letter-spacing:1px; font-size:20px}
+  .brand__name .cnc{color:var(--amber)}
+  h1{font-family:"Oswald",-apple-system,"Segoe UI",sans-serif; font-weight:700; font-size:34px; letter-spacing:.5px; margin:0 0 6px}
+  .sub{color:var(--dim); font-size:15px; margin:0 0 34px}
+  h2{font-family:"Oswald",-apple-system,"Segoe UI",sans-serif; font-weight:600; font-size:20px; letter-spacing:.5px; margin:38px 0 12px; color:var(--text)}
+  p{margin:0 0 16px; color:var(--muted)}
+  strong{color:var(--text); font-weight:600}
+  .card{background:var(--panel); border:1px solid var(--seam); border-radius:10px; padding:20px 22px; margin:22px 0}
+  .lead{color:var(--text)}
+  kbd{
+    font-family:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    background:#1b1e24; border:1px solid #2a2e37; border-bottom-width:2px; border-radius:5px;
+    padding:1px 7px; font-size:.86em; color:var(--text); white-space:nowrap;
+  }
+  code{font-family:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:.9em; color:var(--text)}
+
+  /* numbered steps */
+  ol.steps{list-style:none; counter-reset:s; margin:0; padding:0}
+  ol.steps>li{
+    counter-increment:s; position:relative; padding:2px 0 20px 52px; margin:0;
+    color:var(--muted);
+  }
+  ol.steps>li::before{
+    content:counter(s); position:absolute; left:0; top:0;
+    width:34px; height:34px; border-radius:50%;
+    background:rgba(255,178,36,.12); border:1px solid rgba(255,178,36,.5);
+    color:var(--amber); font-family:"Oswald",sans-serif; font-weight:600; font-size:16px;
+    display:flex; align-items:center; justify-content:center;
+  }
+  ol.steps>li:not(:last-child)::after{
+    content:""; position:absolute; left:17px; top:36px; bottom:2px; width:1px; background:var(--seam);
+  }
+  ol.steps b{color:var(--text)}
+
+  /* dialog illustrations (drawn, not screenshots — see caption) */
+  .shot{margin:14px 0 4px}
+  .shot__cap{font-size:12.5px; color:var(--dim); margin:8px 2px 0; font-style:italic}
+  .dlg{
+    max-width:430px; border-radius:8px; overflow:hidden;
+    box-shadow:0 12px 34px rgba(0,0,0,.5); border:1px solid #2a2e37;
+    font-family:"Segoe UI",-apple-system,sans-serif; line-height:1.5;
+  }
+  .dlg--smartscreen{background:#f3f3f3; color:#1a1a1a}
+  .dlg--smartscreen .dlg__bar{background:#e6e6e6; padding:8px 14px; font-size:12px; color:#555}
+  .dlg--smartscreen .dlg__body{padding:18px 20px 20px}
+  .dlg--smartscreen h3{margin:0 0 6px; font-size:18px; font-weight:600; color:#1a1a1a; font-family:"Segoe UI",sans-serif}
+  .dlg--smartscreen p{color:#3a3a3a; margin:0 0 4px; font-size:13.5px}
+  .dlg--smartscreen .link{color:#0067c0; font-size:13.5px}
+  .dlg--smartscreen .row{display:flex; gap:10px; justify-content:flex-end; margin-top:20px}
+  .btn{
+    font-family:"Segoe UI",sans-serif; font-size:13px; padding:6px 16px; border-radius:4px;
+    border:1px solid #adadad; background:#e1e1e1; color:#1a1a1a; cursor:default;
+  }
+  .btn--run{background:#0067c0; border-color:#0067c0; color:#fff}
+  .dlg--uac{background:#1f1f1f; color:#f3f3f3; max-width:400px}
+  .dlg--uac .uac__head{background:#0067c0; color:#fff; padding:12px 16px; font-size:14px; font-weight:600}
+  .dlg--uac .uac__body{padding:16px 18px 4px}
+  .dlg--uac .uac__q{font-size:14px; color:#f3f3f3; margin:0 0 12px}
+  .dlg--uac .uac__meta{font-size:12.5px; color:#c9c9c9; margin:2px 0}
+  .dlg--uac .uac__meta b{color:#fff}
+  .dlg--uac .uac__pub-bad{color:#ff9a9a}
+  .dlg--uac .row{display:flex; gap:10px; margin:16px 0 16px; padding-top:12px; border-top:1px solid #333}
+  .dlg--uac .btn{background:#2b2b2b; border-color:#3d3d3d; color:#f3f3f3; flex:1; text-align:center}
+  .dlg--uac .btn--yes{background:#0067c0; border-color:#0067c0; color:#fff}
+
+  /* browser download-row illustration */
+  .dlrow{
+    display:flex; align-items:center; gap:12px; max-width:400px;
+    background:#2b2b2b; border:1px solid #3a3a3a; border-radius:8px; padding:10px 12px;
+    font-family:"Segoe UI",-apple-system,sans-serif; box-shadow:0 8px 22px rgba(0,0,0,.45);
+  }
+  .dlrow__ico{color:#ffcf4d; font-size:18px; line-height:1}
+  .dlrow__name{flex:1; color:#f3f3f3; font-size:13px; line-height:1.35}
+  .dlrow__warn{color:#c9a24b; font-size:11.5px}
+  .dlrow__menu{
+    color:#fff; font-size:18px; font-weight:700; letter-spacing:1px;
+    background:#3a3a3a; border:1px solid #ffb224; border-radius:6px; padding:1px 9px 4px;
+  }
+
+  .hash{
+    font-family:"JetBrains Mono",ui-monospace,monospace; font-size:12.5px; color:var(--text);
+    word-break:break-all; background:#0e1013; border:1px solid var(--seam); border-radius:7px;
+    padding:12px 14px; margin:8px 0 4px;
+  }
+  .pill{display:inline-block; font-size:12px; color:var(--amber); border:1px solid rgba(255,178,36,.4);
+    border-radius:999px; padding:2px 10px; margin-left:8px; vertical-align:middle}
+  hr{border:none; border-top:1px solid var(--seam); margin:44px 0}
+  .foot{color:var(--dim); font-size:13px}
+  .back{display:inline-block; margin-top:36px; font-size:14px}
+  .dl{
+    display:inline-block; margin:8px 0 2px; background:var(--amber); color:#1a1200;
+    font-weight:700; font-family:"Oswald",sans-serif; letter-spacing:.5px;
+    padding:12px 22px; border-radius:8px;
+  }
+  .dl:hover{text-decoration:none; filter:brightness(1.05)}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="brand">
+      <svg width="26" height="24" viewBox="0 0 110 100" aria-hidden="true"><path d="M 7 8 L 43 2 V 36 H 63 V 2 L 99 8 V 92 L 63 98 V 64 H 43 V 98 L 7 92 Z" fill="#ffb224"/></svg>
+      <span class="brand__name">HELM<span class="cnc">CNC</span></span>
+    </div>
+
+    <h1>Installing on Windows</h1>
+    <p class="sub">Two minutes, plus two Windows prompts the first time. Here's exactly what you'll see and what to click.</p>
+
+    <div class="card">
+      <p class="lead" style="margin:0"><strong>Why Windows asks twice.</strong> HelmCNC is a new independent product, so Windows doesn't recognise the publisher yet and shows two one-time safety prompts. They're expected — not a sign anything is wrong. This page walks you through both, and shows how to verify your download is genuine if you'd like to check.</p>
+    </div>
+
+    <h2>Install it</h2>
+    <ol class="steps">
+      <li><b>Download the installer.</b> <code>HelmCNC-Setup-1.0.1.exe</code> — about 2&nbsp;MB.
+        <div><a class="dl" href="/downloads/HelmCNC-Setup-1.0.1.exe">Download HelmCNC</a></div>
+      </li>
+      <li><b>Tell your browser to keep the file.</b> Because the app is new, Chrome and Edge hold the download back at first and show it as blocked — you have to allow it once. <b>The file isn't saved until you do this.</b>
+        <div class="shot">
+          <div class="dlrow">
+            <span class="dlrow__ico">⚠</span>
+            <span class="dlrow__name">HelmCNC-Setup-1.0.1.exe<br><span class="dlrow__warn">This file isn't commonly downloaded</span></span>
+            <span class="dlrow__menu" title="the button to click">⋯</span>
+          </div>
+          <p class="shot__cap">Illustration of the browser's download row — the <b>⋯</b> (or <b>ᐯ</b>) button is the one to click.</p>
+        </div>
+        <p style="margin:10px 0 0">In <b>Chrome</b>: click the <b>Downloads</b> button at the top-right (a small <b>ᐯ</b> arrow), find HelmCNC in the list, click the <b>⋯</b> next to it, then <b>Keep</b>. If it asks again, choose <b>Keep anyway</b>.</p>
+        <p style="margin:8px 0 0">In <b>Edge</b>: open the <b>Downloads</b> flyout at the top-right, point at the HelmCNC row, click <b>⋯</b> → <b>Keep</b>, then <b>Show more</b> → <b>Keep anyway</b> if it double-checks.</p>
+      </li>
+      <li><b>Open it.</b> Double-click <code>HelmCNC-Setup-1.0.1.exe</code> in your Downloads.</li>
+      <li><b>Windows protected your PC.</b> A blue window appears (below). Click the small <b>More info</b> link, then the <b>Run anyway</b> button that appears. This is the step most people miss — the button is hidden until you click <b>More info</b>.
+        <div class="shot">
+          <div class="dlg dlg--smartscreen">
+            <div class="dlg__bar">Windows</div>
+            <div class="dlg__body">
+              <h3>Windows protected your PC</h3>
+              <p>Microsoft Defender SmartScreen prevented an unrecognised app from starting. Running this app might put your PC at risk.</p>
+              <p class="link"><u>More info</u></p>
+              <div class="row"><span class="btn btn--run">Run anyway</span><span class="btn">Don't run</span></div>
+            </div>
+          </div>
+          <p class="shot__cap">Illustration. Click <b>More info</b> first — <b>Run anyway</b> only appears afterward.</p>
+        </div>
+      </li>
+      <li><b>Allow it to install.</b> A <b>User Account Control</b> prompt asks permission to make changes. The publisher shows as <b>Unknown</b> for now (that changes once the app is code-signed). Click <b>Yes</b>.
+        <div class="shot">
+          <div class="dlg dlg--uac">
+            <div class="uac__head">User Account Control</div>
+            <div class="uac__body">
+              <p class="uac__q">Do you want to allow this app to make changes to your device?</p>
+              <p class="uac__meta"><b>HelmCNC Setup</b></p>
+              <p class="uac__meta uac__pub-bad">Verified publisher: Unknown</p>
+              <p class="uac__meta">File origin: Downloaded from the Internet</p>
+              <div class="row"><span class="btn btn--yes">Yes</span><span class="btn">No</span></div>
+            </div>
+          </div>
+          <p class="shot__cap">Illustration of the Windows UAC prompt.</p>
+        </div>
+      </li>
+      <li><b>Walk the wizard.</b> Six short pages — Welcome, License, Destination, Components, Install, Finish. The defaults are right for almost everyone; just keep clicking <b>Next</b>, then <b>Install</b>.</li>
+      <li><b>First launch imports your machine.</b> If this PC already runs KMotionCNC, HelmCNC offers to import your existing setup — axis map, velocities, work offsets, tool table, M-codes — so you don't retype anything.</li>
+    </ol>
+
+    <h2>Prefer to verify the download first?</h2>
+    <p>Every release is published with a SHA-256 fingerprint. To confirm your download is byte-for-byte the file we published, open <strong>PowerShell</strong> in your Downloads folder and run:</p>
+    <div class="hash">Get-FileHash .\HelmCNC-Setup-1.0.1.exe -Algorithm SHA256</div>
+    <p>It should print, for <strong>version 1.0.1</strong> <span class="pill">current</span>:</p>
+    <div class="hash">B674EBA5D35DB0D92AF2D865F16DA8D5D7088BDB3945D01DD56CFD5EFD875F0B</div>
+    <p>A match means the file is exactly what left our hands and hasn't been altered in transit. (Each release lists its own hash here — this one is for 1.0.1.)</p>
+
+    <h2>Is it safe? Straight answer.</h2>
+    <p>Yes. The warnings are about <strong>recognition, not safety</strong> — Windows flags any installer from a publisher it hasn't built up a history with yet, signed or not. HelmCNC installs only into its own folder, keeps your machine data untouched on upgrades, and runs offline apart from one-time licence activation. As more people install each release cleanly, the warnings fade on their own.</p>
+    <p>Still unsure? Email <a href="mailto:support@helmcnc.com">support@helmcnc.com</a> — a builder answers, not a ticket bot — or run the free 14-day trial on a spare PC first.</p>
+
+    <hr>
+    <p class="foot">© 2026 HelmCNC · Preiss Workshop · Independent product, not affiliated with Dynomotion.</p>
+    <a class="back" href="index.html">← Back to helmcnc.com</a>
+  </div>
+</body>
+</html>

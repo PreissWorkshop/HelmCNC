@@ -481,7 +481,7 @@
           <span class="price__unit">/ perpetual license</span>
         </div>
         <span class="price__launch">Founder price — first 30 days. Goes up to $239</span>
-        <p class="price__note">Everything in V1, including the native phone pendant. <strong>24 months of updates included.</strong></p>
+        <p class="price__note">Everything in V1, including the phone pendant. <strong>24 months of updates included.</strong></p>
         <div class="price__list">
           <div class="price__item"><span class="price__check">✓</span><span>The full Control cockpit + Quick Parts</span></div>
           <div class="price__item"><span class="price__check">✓</span><span>Phone pendant included</span></div>
@@ -490,8 +490,10 @@
         <a class="price__cta price__cta--amber" href="#" data-checkout="perpetual">Buy — $129</a>
       </div>
 
-      <!-- rent-to-own -->
-      <div class="price price--alt">
+      <!-- rent-to-own — HIDDEN for launch: Freemius has no payment-plan pricing
+           configured for it yet, so advertising $45×6 would be a bait-and-switch.
+           Set up a Freemius payment plan, then remove the display:none to re-enable. -->
+      <div class="price price--alt" style="display:none">
         <span class="price__kind">Rent-to-own</span>
         <div class="price__row">
           <span class="price__num">$45</span>
@@ -641,5 +643,32 @@
 </footer>
 
 <script src="assets/js/site.js" defer></script>
+
+<!-- Freemius checkout — opens the hosted overlay for the HelmCNC lifetime plan.
+     public_key is meant to be public (it's the checkout key, not the secret).
+     The FOUNDER coupon is applied so the price shown matches the advertised
+     $129 founder price; remove `coupon` (or change it) to show list price. -->
+<script src="https://checkout.freemius.com/checkout.min.js"></script>
+<script>
+(function () {
+  if (typeof FS === 'undefined' || !FS.Checkout) return;   // offline / blocked → buttons no-op, page unaffected
+  var handler = FS.Checkout.configure({
+    plugin_id:  '34883',
+    plan_id:    '58313',
+    public_key: 'pk_54f7cb6676ee9c5146d59deb86b03'
+  });
+  var buttons = document.querySelectorAll('[data-checkout]');
+  for (var i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener('click', function (e) {
+      e.preventDefault();
+      handler.open({
+        name:     'HelmCNC',
+        licenses: 1,
+        coupon:   'FOUNDER'
+      });
+    });
+  }
+})();
+</script>
 </body>
 </html>

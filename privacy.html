@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Privacy Policy — HelmCNC</title>
-<meta name="description" content="HelmCNC privacy policy. The phone pendant talks only to your own PC over your local network — no cloud, no accounts, no data collection.">
+<meta name="description" content="HelmCNC privacy policy. The phone pendant talks only to your own PC over your local network. The desktop app goes online only to check your licence and for new versions — no accounts, no analytics, no tracking.">
 <meta name="robots" content="index,follow">
 <style>
   :root{
@@ -44,10 +44,10 @@
     </div>
 
     <h1>Privacy Policy</h1>
-    <p class="eff">Effective 23 July 2026</p>
+    <p class="eff">Effective 25 July 2026</p>
 
     <div class="card">
-      <p style="margin:0; color:var(--text)"><strong>The short version:</strong> The HelmCNC phone pendant talks only to your own PC over your local network. There are no accounts, no cloud servers, and no data collection. Nothing you do leaves your own devices.</p>
+      <p style="margin:0; color:var(--text)"><strong>The short version:</strong> The HelmCNC phone pendant talks only to your own PC over your local network. The desktop app goes online for exactly two things — checking your licence, and checking whether a newer version exists. There are no accounts, no analytics and no tracking, and your work never leaves your PC.</p>
     </div>
 
     <h2>Who we are</h2>
@@ -59,7 +59,11 @@
     <p>On iOS, the app asks for the <strong>Local Network</strong> permission. That permission is used for one purpose only: to find and connect to your PC on your Wi-Fi. If your phone's camera is used to watch the cut, the video is shown live on your phone and is never uploaded or recorded by us.</p>
 
     <h2>The desktop app</h2>
-    <p>HelmCNC on the desktop runs offline. Its only network activity is <strong>one-time license activation</strong>: when you enter your license key, the app contacts our payment and licensing provider, Freemius, to verify it. That request contains your license key and a hashed identifier of your controller board, and nothing else. After activation the software continues to work offline.</p>
+    <p>HelmCNC runs on your own PC and does its real work offline — cutting never needs an internet connection. It makes two kinds of network request, and no others.</p>
+    <p><strong>Licence checks.</strong> When you enter your licence key, the app contacts our payment and licensing provider, Freemius, to activate it. While the app is running it then re-checks that licence about twice a day (every 12 hours) to see whether it is still active. Each request contains your licence key, your Freemius installation ID, and a hashed identifier derived from your controller board — nothing else. If a check fails, or the PC has no internet at all, <strong>the software keeps working</strong>: a licence you have paid for is never switched off by a failed or missed check.</p>
+    <p><strong>Update checks.</strong> Every 12 hours the app fetches a small signed text file from helmcnc.com that lists the current version. That request carries no licence key and no identifier for you or your machine — only what any web request carries: your IP address, and the label <em>HelmCNC-Updater</em>. If a newer version exists, the app downloads the installer from helmcnc.com quietly in the background, verifies it against the signed listing, and shows an on-screen alert — nothing installs until you choose to restart. It never interrupts a running job, and nothing is uploaded.</p>
+    <p>Neither check is required for the machine to run. If the PC is offline, or you block HelmCNC in your firewall, both checks simply fail quietly and cutting is unaffected. Many HelmCNC machines never see the internet at all, and that is a supported way to run.</p>
+    <p>That is the whole of it. HelmCNC sends us <strong>no</strong> telemetry, no usage statistics and no error reports, and none of your work: your G-code, designs, tool tables, offsets and job history stay on your PC.</p>
 
     <h2>Payments</h2>
     <p>Purchases are handled by <strong>Freemius</strong>, our merchant of record. When you buy a license, Freemius collects the information needed to process the payment (such as your name, email, and billing details) under <a href="https://freemius.com/privacy/" target="_blank" rel="noopener">Freemius's own privacy policy</a>. We never see or store your full card details.</p>

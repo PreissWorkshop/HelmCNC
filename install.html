@@ -137,13 +137,13 @@
 
     <h2>Install it</h2>
     <ol class="steps">
-      <li><b>Download the installer.</b> <code>HelmCNC-Setup-1.0.15.exe</code> — about 2&nbsp;MB.
-        <div><a class="dl" href="/downloads/HelmCNC-Setup-1.0.15.exe">Download HelmCNC</a></div>
+      <li><b>Download the installer.</b> <code>HelmCNC-Setup-1.0.16.exe</code> — about 2&nbsp;MB.
+        <div><a class="dl" href="/downloads/HelmCNC-Setup-1.0.16.exe">Download HelmCNC</a></div>
         <p style="margin:12px 0 0"><b>If the first try says "Couldn't download — Download error", press the ▷ retry button on the download.</b> Windows scans every new file and the first attempt sometimes trips; the retry goes straight through.</p>
         <div class="shot">
           <div class="dlrow">
             <span class="dlrow__ico" style="color:#e06b6b">✕</span>
-            <span class="dlrow__name">HelmCNC-Setup-1.0.15.exe<br><span class="dlrow__warn">Couldn't download — Download error</span></span>
+            <span class="dlrow__name">HelmCNC-Setup-1.0.16.exe<br><span class="dlrow__warn">Couldn't download — Download error</span></span>
             <span class="dlrow__menu" title="press to retry" style="border-color:#4bd08b;color:#7ee0a6">▷</span>
           </div>
           <p class="shot__cap">Illustration — press the green <b>▷</b> retry button and it downloads.</p>
@@ -154,8 +154,8 @@
           <div class="dlg dlg--smartscreen">
             <div class="dlg__bar">Downloads</div>
             <div class="dlg__body">
-              <h3 style="font-size:15px;line-height:1.3">Make sure you trust HelmCNC-Setup-1.0.15.exe before you open it</h3>
-              <p style="margin-top:8px">Name: HelmCNC-Setup-1.0.15.exe<br>Publisher: Unknown</p>
+              <h3 style="font-size:15px;line-height:1.3">Make sure you trust HelmCNC-Setup-1.0.16.exe before you open it</h3>
+              <p style="margin-top:8px">Name: HelmCNC-Setup-1.0.16.exe<br>Publisher: Unknown</p>
               <div class="row" style="align-items:flex-start;margin-top:16px">
                 <span class="btn">Cancel</span>
                 <span style="display:inline-flex;flex-direction:column;align-items:stretch;gap:3px">
@@ -171,7 +171,7 @@
         <p style="margin:8px 0 0"><b>Edge — in the Downloads list</b> (the <b>⭳</b> icon, top-right): point at the HelmCNC row, click its <b>⋯</b> button, then <b>Keep</b> (then <b>Keep anyway</b> if it asks again).</p>
         <p style="margin:8px 0 0"><b>Chrome:</b> open <b>Downloads</b> (top-right), click the <b>⋯</b> next to HelmCNC → <b>Keep</b>, then <b>Keep anyway</b> if asked.</p>
       </li>
-      <li><b>Open it.</b> Double-click <code>HelmCNC-Setup-1.0.15.exe</code> in your Downloads.</li>
+      <li><b>Open it.</b> Double-click <code>HelmCNC-Setup-1.0.16.exe</code> in your Downloads.</li>
       <li><b>Windows protected your PC.</b> A blue window appears (below). Click the small <b>More info</b> link, then the <b>Run anyway</b> button that appears. This is the step most people miss — the button is hidden until you click <b>More info</b>.
         <div class="shot">
           <div class="dlg dlg--smartscreen">
@@ -207,10 +207,10 @@
 
     <h2>Prefer to verify the download first?</h2>
     <p>Every release is published with a SHA-256 fingerprint. To confirm your download is byte-for-byte the file we published, open <strong>PowerShell</strong> in your Downloads folder and run:</p>
-    <div class="hash">Get-FileHash .\HelmCNC-Setup-1.0.15.exe -Algorithm SHA256</div>
-    <p>It should print, for <strong>version 1.0.15</strong> <span class="pill">current</span>:</p>
-    <div class="hash">23A1BEEFA5D522FF9A84A2C4777FE8AF1E1232A261AF8705C304BA90204022C3</div>
-    <p>A match means the file is exactly what left our hands and hasn't been altered in transit. (Each release lists its own hash here — this one is for version 1.0.15.)</p>
+    <div class="hash">Get-FileHash .\HelmCNC-Setup-1.0.16.exe -Algorithm SHA256</div>
+    <p>It should print, for <strong>version 1.0.16</strong> <span class="pill">current</span>:</p>
+    <div class="hash">0E751C77656584D629E840A0226BC9F1ABBF483D06AF0CF5D922535DE8A53D83</div>
+    <p>A match means the file is exactly what left our hands and hasn't been altered in transit. (Each release lists its own hash here — this one is for version 1.0.16.)</p>
 
     <h2>Is it safe? Straight answer.</h2>
     <p>Yes. The warnings are about <strong>recognition, not safety</strong> — Windows flags any installer from a publisher it hasn't built up a history with yet, signed or not. HelmCNC installs only into its own folder, keeps your machine data untouched on upgrades, and runs offline apart from two small checks — your licence, and whether a newer version exists (both are spelled out in the <a href="privacy.html">privacy policy</a>). As more people install each release cleanly, the warnings fade on their own.</p>

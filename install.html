@@ -135,6 +135,14 @@
       <p class="lead" style="margin:0"><strong>Why Windows makes you work for it.</strong> HelmCNC is a new independent product, so Windows doesn't recognise the publisher yet and puts a few one-time safety prompts in the way. They're expected — not a sign anything is wrong. Two of them hide the button you actually want; this page shows you exactly where it is, and how to verify your download is genuine if you'd like to check.</p>
     </div>
 
+    <h2 id="requirements">Before you install</h2>
+    <ul>
+      <li><b>Windows 10 or 11</b>, 32- or 64-bit. <b>Windows 7 SP1 64-bit</b> should work but isn't tested yet: install every Windows update and .NET Framework 4.8 first. HelmCNC needs TLS 1.2 to activate, and those updates provide it.</li>
+      <li><b>.NET Framework 4.8.</b> It's already built into Windows 10 (May 2019 update or later) and Windows 11. On older Windows, get it free from Microsoft: <a href="https://dotnet.microsoft.com/download/dotnet-framework/net48">.NET Framework 4.8</a>.</li>
+      <li><b>A Dynomotion KFLOP or Kogna</b>, and <b>Dynomotion's KMotion software installed first</b>. Get it from <a href="https://www.dynomotion.com/">dynomotion.com</a>. HelmCNC drives your board through Dynomotion's own libraries, and the KMotion installer also adds the KFLOP USB driver and the Visual C++ runtime. You don't need anything else.</li>
+    </ul>
+    <p>The download is just HelmCNC itself. Every feature works free for <b>30 days</b>. After that you can still jog, home, zero, probe, change tools and view G-code. Only running programs needs a licence. The trial is tied to your controller board, so reinstalling HelmCNC won't reset it.</p>
+
     <h2>Install it</h2>
     <ol class="steps">
       <li><b>Download the installer.</b> <code>HelmCNC-Setup-1.0.92.exe</code> — about 2&nbsp;MB.
@@ -213,7 +221,7 @@
     <p>A match means the file is exactly what left our hands and hasn't been altered in transit. (Each release lists its own hash here — this one is for version 1.0.92.)</p>
 
     <h2>Is it safe? Straight answer.</h2>
-    <p>Yes. The warnings are about <strong>recognition, not safety</strong> — Windows flags any installer from a publisher it hasn't built up a history with yet, signed or not. HelmCNC installs only into its own folder, keeps your machine data untouched on upgrades, and runs offline apart from two small checks — your licence, and whether a newer version exists (both are spelled out in the <a href="privacy.html">privacy policy</a>). As more people install each release cleanly, the warnings fade on their own.</p>
+    <p>Yes. The warnings are about <strong>recognition, not safety</strong> — Windows flags any installer from a publisher it hasn't built up a history with yet, signed or not. HelmCNC installs only into its own folder, keeps your machine data untouched on upgrades, and runs offline apart from three small checks: your licence, your trial (an anonymous fingerprint of the controller board), and whether a newer version exists. All three are spelled out in the <a href="privacy.html">privacy policy</a>. As more people install each release cleanly, the warnings fade on their own.</p>
     <p>Still unsure? Email <a href="mailto:support@helmcnc.com">support@helmcnc.com</a> — a builder answers, not a ticket bot — or run the free 30-day trial on a spare PC first.</p>
 
     <hr>

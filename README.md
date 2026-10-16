@@ -87,9 +87,10 @@ attributes stay in the markup so the videos still work with JavaScript off.
   that is banned from the page. Use "one-time", "own it", "rent-to-own", "renewal". Keep
   *"Skipping it never disables your software"* near-verbatim in the pricing footnote.
   Every HELMCNC wordmark shows **HELM** in white and **CNC** in amber.
-- The pendant is a **native app for iPhone and Android**, free on the App Store and
-  Google Play, and it ships **in the base product** — it is not one of the roadmap
-  add-ons. The camera bullet is *watching only*; it makes no vision/alignment claim
+- The pendant is a **web page served by HelmCNC itself**: scan the QR on the HelmCNC
+  screen and it opens in the phone's browser, nothing to install (native App Store /
+  Google Play apps are roadmap only — never claim them as shipping). It ships **in
+  the base product** — it is not one of the roadmap add-ons. The camera bullet is *watching only*; it makes no vision/alignment claim
   (that is the Vision add-on, still "coming soon").
 - **Buy buttons** are placeholders (`href="#"`, tagged `data-checkout="perpetual"` and
   `data-checkout="rent-to-own"`). Point them at the hosted checkout when it exists.

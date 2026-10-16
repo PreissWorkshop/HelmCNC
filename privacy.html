@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Privacy Policy — HelmCNC</title>
-<meta name="description" content="HelmCNC privacy policy. The phone pendant talks only to your own PC over your local network. The desktop app goes online only to check your licence, fetch updates and release news, and deliver support reports you choose to send — no accounts, no analytics, no tracking.">
+<meta name="description" content="HelmCNC privacy policy. The phone pendant talks only to your own PC over your local network. The desktop app goes online only to check your licence and trial, fetch updates and release news, and deliver support reports you choose to send — no accounts, no analytics, no tracking.">
 <meta name="robots" content="index,follow">
 <style>
   :root{
@@ -44,10 +44,10 @@
     </div>
 
     <h1>Privacy Policy</h1>
-    <p class="eff">Effective 25 July 2026</p>
+    <p class="eff">Effective 16 October 2026 (added: the trial check)</p>
 
     <div class="card">
-      <p style="margin:0; color:var(--text)"><strong>The short version:</strong> The HelmCNC phone pendant talks only to your own PC over your local network. The desktop app goes online for three things — checking your licence, checking for updates and release news, and delivering a support report <em>if you write one and press SEND</em>. There are no accounts, no analytics and no tracking, and your work never leaves your PC.</p>
+      <p style="margin:0; color:var(--text)"><strong>The short version:</strong> The HelmCNC phone pendant talks only to your own PC over your local network. The desktop app goes online for four things — checking your licence, checking your free trial, checking for updates and release news, and delivering a support report <em>if you write one and press SEND</em>. There are no accounts, no analytics and no tracking, and your work never leaves your PC.</p>
     </div>
 
     <h2>Who we are</h2>
@@ -56,11 +56,12 @@
     <h2>The phone pendant</h2>
     <p>The HelmCNC pendant is a web page you open in your phone's browser — a remote control for the HelmCNC desktop software running on your own computer. It connects to that computer <strong>directly over your local Wi-Fi network</strong>.</p>
     <p>It does <strong>not</strong> collect, store, or transmit any personal data. There is no account or sign-in. There are no analytics, no advertising, and no third-party tracking. It does not use cloud servers — there is no HelmCNC server for it to talk to. Everything stays between your phone and your PC on your own network.</p>
-    <p>On iOS, the app asks for the <strong>Local Network</strong> permission. That permission is used for one purpose only: to find and connect to your PC on your Wi-Fi. If your phone's camera is used to watch the cut, the video is shown live on your phone and is never uploaded or recorded by us.</p>
+    <p>Nothing is installed on the phone. If your phone's camera is used to watch the cut, the video is shown live on your phone and is never uploaded or recorded by us.</p>
 
     <h2>The desktop app</h2>
-    <p>HelmCNC runs on your own PC and does its real work offline — cutting never needs an internet connection. It makes three kinds of network request, and no others.</p>
+    <p>HelmCNC runs on your own PC and does its real work offline — cutting never needs an internet connection. It makes four kinds of network request, and no others.</p>
     <p><strong>Licence checks.</strong> When you enter your licence key, the app contacts our payment and licensing provider, Freemius, to activate it. While the app is running it then re-checks that licence about twice a day (every 12 hours) to see whether it is still active. Each request contains your licence key, your Freemius installation ID, and a hashed identifier derived from your controller board — nothing else. If a check fails, or the PC has no internet at all, <strong>the software keeps working</strong>: a licence you have paid for is never switched off by a failed or missed check.</p>
+    <p><strong>Trial check.</strong> The free trial belongs to your controller board, not your PC. While the trial is running and a board is connected, the app sends our trial service (trial.helmcnc.com) one thing: the same hashed board identifier described above. It sends no licence key, no name and no PC details, at most about twice a day. The service stores only that identifier and the date it first saw it, and answers with that date. If the check fails or the PC is offline, the trial simply runs on this PC's own dates. Once you have a licence, the app stops making this check.</p>
     <p><strong>Update and news checks.</strong> While running, the app frequently fetches a small signed text file from helmcnc.com that lists the current version (about once a minute — it is under a kilobyte), and at most once an hour a signed release-news file for the SUPPORT screen. These requests carry no licence key and no identifier for you or your machine — only what any web request carries: your IP address, and the label <em>HelmCNC-Updater</em>. If a newer version exists, the app downloads the installer from helmcnc.com quietly in the background, verifies it against the signed listing, and shows an on-screen alert — nothing installs until you choose to restart. It never interrupts a running job.</p>
     <p><strong>Support reports — only when you send one.</strong> The SUPPORT screen lets you write a bug report or feature request at the panel. Nothing is ever sent unless you press SEND, and the screen lists exactly what a report contains: your words, an optional contact you choose to give, the app version, the OS version — and, only while its checkbox is ticked, the controller firmware line and the recent event log with file paths trimmed to bare names. Reports queue on your PC (Data\Outbox, yours to open or delete) and are delivered over HTTPS when a receiving address is configured; delivered copies stay on your PC too. The app <strong>never</strong> sends a report, or anything else, on its own.</p>
     <p>None of these requests are required for the machine to run. If the PC is offline, or you block HelmCNC in your firewall, they simply fail quietly and cutting is unaffected. Many HelmCNC machines never see the internet at all, and that is a supported way to run.</p>

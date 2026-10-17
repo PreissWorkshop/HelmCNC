@@ -80,16 +80,17 @@ attributes stay in the markup so the videos still work with JavaScript off.
 
 - **Design tokens** are CSS custom properties at the top of `site.css` — colors,
   type stacks, spacing, shadows. Change them there, not in the rules.
-- **Pricing numbers are authoritative.** `$129` founder → `$239` (marked *"Founder price — first 30 days. Goes
-  up to $239"*), `$45 × 6` rent-to-own (`$270` total), `$19/yr` optional renewal,
-  24 months of updates included, 14-day trial. Do not alter them casually.
+- **Pricing numbers are authoritative.** `$129` founder → `$199` (marked *"Founder price until 18 December 2026. Then
+  $199"*; set 2026-10-17), rent-to-own hidden until Freemius has a payment plan, `$19/yr` optional renewal,
+  24 months of updates included, 30-day trial (14 until the 2026-10-16 launch). Do not alter them casually.
 - **Copy rules:** never describe HelmCNC as a recurring-billing product — the s-word for
   that is banned from the page. Use "one-time", "own it", "rent-to-own", "renewal". Keep
   *"Skipping it never disables your software"* near-verbatim in the pricing footnote.
   Every HELMCNC wordmark shows **HELM** in white and **CNC** in amber.
-- The pendant is a **native app for iPhone and Android**, free on the App Store and
-  Google Play, and it ships **in the base product** — it is not one of the roadmap
-  add-ons. The camera bullet is *watching only*; it makes no vision/alignment claim
+- The pendant is a **web page served by HelmCNC itself**: scan the QR on the HelmCNC
+  screen and it opens in the phone's browser, nothing to install (native App Store /
+  Google Play apps are roadmap only — never claim them as shipping). It ships **in
+  the base product** — it is not one of the roadmap add-ons. The camera bullet is *watching only*; it makes no vision/alignment claim
   (that is the Vision add-on, still "coming soon").
 - **Buy buttons** are placeholders (`href="#"`, tagged `data-checkout="perpetual"` and
   `data-checkout="rent-to-own"`). Point them at the hosted checkout when it exists.

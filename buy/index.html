@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Buy HelmCNC</title>
+<!-- The stable buy link (helmcnc.com/buy) that the app's BUY button opens.
+     It opens the same Freemius checkout as the home page's Buy buttons, so a
+     price or coupon change is made here and on index.html, never in the app.
+     Founder coupon until 18 December 2026; after that remove `coupon`. -->
+<link rel="canonical" href="https://helmcnc.com/buy/">
+<style>
+  body { margin: 0; background: #0f1012; color: #e8e6e1; font: 16px/1.5 system-ui, sans-serif; }
+  main { max-width: 560px; margin: 0 auto; padding: 48px 16px; }
+  a { color: #ffb224; }
+  button { font: inherit; font-weight: 600; background: #ffb224; color: #0f1012; border: 0; border-radius: 6px; padding: 12px 20px; cursor: pointer; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Buy HelmCNC</h1>
+  <p>$129 founder price until 18 December 2026, then $199. One licence, yours forever, with 24 months of updates.</p>
+  <p><button type="button" data-checkout="perpetual">Buy — $129</button></p>
+  <p>Your licence key comes by email. In HelmCNC, open LICENSE, paste the key and press ACTIVATE. The licence is tied to your KFLOP or Kogna board, not the PC.</p>
+  <p>Checkout doesn't open? Email <a href="mailto:support@helmcnc.com">support@helmcnc.com</a>.</p>
+  <p><a href="/">← helmcnc.com</a></p>
+</main>
+<!-- jQuery must load before checkout.min.js (see index.html). -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+        crossorigin="anonymous"></script>
+<script src="https://checkout.freemius.com/checkout.min.js"></script>
+<script>
+(function () {
+  if (typeof FS === 'undefined' || !FS.Checkout) return;
+  var handler = FS.Checkout.configure({
+    plugin_id:  '34883',
+    plan_id:    '58313',
+    public_key: 'pk_54f7cb6676ee9c5146d59deb86b03'
+  });
+  function open() { handler.open({ name: 'HelmCNC', licenses: 1, coupon: 'FOUNDER' }); }
+  document.querySelector('[data-checkout]').addEventListener('click', function (e) { e.preventDefault(); open(); });
+  open();   // arriving from the app's BUY button: open the checkout at once
+})();
+</script>
+</body>
+</html>

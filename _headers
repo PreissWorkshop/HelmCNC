@@ -1,0 +1,9 @@
+# Response headers for the Pages site (security-audit M2, 2026-10-24). Nothing here changes how pages render:
+# the CSP only forbids framing, plug-ins and <base> hijacking; scripts and styles are untouched.
+/*
+  Strict-Transport-Security: max-age=31536000
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  Content-Security-Policy: frame-ancestors 'none'; object-src 'none'; base-uri 'self'
